@@ -53,23 +53,32 @@
   color: white;
 }
 
-.cardapio__item:hover .cardapio__item__content h3 {
+/* .cardapio__item:hover .cardapio__item__content h3 {
   display: none;
-}
+} */
 
 .cardapio__item:hover .cardapio__item__content span {
   color: var(--color-black);
 }
 
+.cardapio__item:hover .cardapio__item__content p {
+  display: none;
+}
+
+
 .cardapio__item:hover .cardapio__item__content .add-to-cart .btn-add-box .btn-add a {
   color: var(--color-white) !important;
+}
+
+.cardapio__item:hover .cardapio__item__content .cardapio__item__content__text .obs { 
+  display: none;
 }
 
 .cardapio__item {
   padding: 1.6rem;
 
   border-radius: 11px;
-  height: 380px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +88,8 @@
   word-wrap: break-word;
   overflow: hidden;
   transition: all 100ms;
+
+  gap: 8px;
 
   background-color: var(--color-white);
 }
@@ -102,13 +113,13 @@
   text-align: center;
   word-wrap: break-word;
   overflow: hidden;
-  height: 100px;
+
 }
 
 .cardapio__item__content__text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 .cardapio__item__content .cardapio__item__content__text h3 {
@@ -116,10 +127,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width: 200px;
-
-  height: 3rem;
 
   font-size: clamp(1.8rem, 1rem + 1vw, 2.2rem);
   font-family: "poppinsbold", sans-serif;
@@ -131,6 +143,25 @@
   font-family: "poppinsmedium", sans-serif;
   color: var(--color-primary);
   /* margin-bottom: 1rem; */
+}
+
+.cardapio__item__content .cardapio__item__content__text p { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   font-size: 14px;
+   line-height: 18px;
+  min-height: 100px;
+  
+}
+
+.cardapio__item__content .cardapio__item__content__text .obs { 
+  font-size: 12px;
+  background-color: lightYellow;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: #333;
+  
 }
 
 /* add to cart */

@@ -18,7 +18,7 @@ cardapio.metodos = {
     console.log("iniciou");
   },
 
-  obterItensCardapio: (categoria = "burgers", vermais = false) => {
+  obterItensCardapio: (categoria = "aves", vermais = false) => {
     var filtro = MENU[categoria];
 
     if (!vermais) {

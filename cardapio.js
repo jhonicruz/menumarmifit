@@ -30,7 +30,7 @@ cardapio.metodos = {
     cardapio.metodos.carregarBotaoLigar();
   },
 
-  obterItensCardapio: (categoria = "burgers", vermais = false) => {
+  obterItensCardapio: (categoria = "aves", vermais = false) => {
     var filtro = MENU[categoria];
 
     if (!vermais) {
@@ -41,11 +41,14 @@ cardapio.metodos = {
     $.each(filtro, (i, e) => {
       let price = e.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+      let obs = e.obs.join(", ");
+
       let temp = cardapio.templates.item
         .replace(/\${img}/g, e.img)
         .replace(/\${name}/g, e.name)
+        .replace(/\${dsc}/g, e.dsc)
         .replace(/\${price}/g, price)
-        .replace(/\${id}/g, e.id);
+        .replace(/\${obs}/g, obs);
 
       // Clicou em ver mais (+ 4 itens)
 
@@ -561,6 +564,8 @@ cardapio.templates = {
  <div class="cardapio__item__content">
    <div class="cardapio__item__content__text">
      <h3>\${name}</h3>
+     <p>\${dsc}</p>
+     <span class="obs">\${obs}</span>
      <span>\${price}</span>
    </div>
 
