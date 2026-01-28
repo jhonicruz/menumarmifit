@@ -48,7 +48,10 @@ cardapio.metodos = {
         .replace(/\${name}/g, e.name)
         .replace(/\${dsc}/g, e.dsc)
         .replace(/\${price}/g, price)
-        .replace(/\${obs}/g, obs);
+        .replace(/\${obs}/g, obs)
+        .replace(/\${peso}/g, e.peso)
+        .replace(/\${kcal}/g, e.kcal)
+        .replace(/\${id}/g, e.id);
 
       // Clicou em ver mais (+ 4 itens)
 
@@ -565,7 +568,10 @@ cardapio.templates = {
    <div class="cardapio__item__content__text">
      <h3>\${name}</h3>
      <p>\${dsc}</p>
+     <span class="kcal-peso">\${kcal}kcal | \${peso}</span>
      <span class="obs">\${obs}</span>
+     
+     
      <span>\${price}</span>
    </div>
 

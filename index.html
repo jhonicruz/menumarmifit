@@ -1,383 +1,395 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./favicon.svg" type="image/svg" />
-    <script src="https://kit.fontawesome.com/f012a1f94f.js" crossorigin="anonymous"></script>
-    <title>Dr. Burguer - Seja Bem Vindo</title>
-    <link rel="stylesheet" href="./assets/style/main.css" />
-  </head>
-  <body>
 
-    <div class="container-mensagens" id="container-mensagens"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg" />
+  <script src="https://kit.fontawesome.com/f012a1f94f.js" crossorigin="anonymous"></script>
+  <title>Dr. Burguer - Seja Bem Vindo</title>
+  <link rel="stylesheet" href="./assets/style/main.css" />
+</head>
 
-      <a class="botao-carrinho shadow-8dp hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
+<body>
 
-        <div class="badge-total-carrinho">0</div>
-        <i class="fa fa-shopping-bag"></i>
-      </a>
+  <div class="container-mensagens" id="container-mensagens"></div>
 
-    <header class="header">
-      <div class="header-container container">
-        <div class="header__logo">
-          <a href="#"><img src="assets/img/logo.png" alt="Brand Dr. Burguer" /></a>
-        </div>
-        <nav class="header__navmenu">
-          <button
-            type="button"
-            class="toggle-menu"
-            data-toggle="collapse"
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-label="Abrir Menu"
-            aria-haspopup="true"
-          >
-            <span data-toggle="hamburguer"></span>
-          </button>
+  <a class="botao-carrinho shadow-8dp hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
 
-          <ul id="menu" role="menu" data-menu="scroll">
-            <li>
-              <a href="#carrinho" data-modal="btn" onclick="cardapio.metodos.abrirCarrinho(true)">Carrinho<i class="fa-solid fa-bag-shopping"></i></a>
-              
-            </li>
-            <li>
-              <a href="#cardapio">Cardápio<img src="assets/img/icon-cardapio.svg" alt=""></a>
-            </li>
-            <li>
-              <a href="#servicos">Serviços <img src="assets/img/icon-servicos.svg" alt=""></a>
-            </li>
-            <li>
-              
-              <a href="#reserva"> Reserva<img src="./assets/img/icon-reserva.svg" alt=""></a>
-             
-            </li>
-            <li>
-              <a href="#depoimentos">Depoimentos<img src="assets/img/icon-servicos.svg" alt=""></a>
-            </li>
-          </ul>
-        </nav>
-        <div class="container-cart">
-          <button class="btn-primary shadow-8dp" data-modal="btn-meuCarrinho">
-            
-            <a  onclick="cardapio.metodos.abrirCarrinho(true)">Meu carrinho 
-              <div class="badge-total-carrinho container-total-carrinho bagde-botao-superior hidden">8</div>
-              <i class="fa-solid fa-bag-shopping"></i>
-            </a>
-         
-          </button>
-        </div>
+    <div class="badge-total-carrinho">0</div>
+    <i class="fa fa-shopping-bag"></i>
+  </a>
+
+  <header class="header">
+    <div class="header-container container">
+      <div class="header__logo">
+        <a href="#"><img src="assets/img/logo.png" alt="Brand Dr. Burguer" /></a>
       </div>
-    </header>
-    
+      <nav class="header__navmenu">
+        <button type="button" class="toggle-menu" data-toggle="collapse" aria-controls="menu" aria-expanded="false"
+          aria-label="Abrir Menu" aria-haspopup="true">
+          <span data-toggle="hamburguer"></span>
+        </button>
 
-    <section class="banner" id="banner">
-      <div class="container container--banner">
-        <div class="banner__content">
-          <div class="banner__content__text">
-            <h1 class="title">Escolha sua comida <span class="primary-color">favorita.</span></h1>
-            <p class="paragraphs">
-              Aproveite nosso cardapio! Escolha oque desejar e receba em sua casa de forma rápida e
-              segura.
-            </p>
-          </div>
-          <div class="banner__button">
-            <button class="btn-primary btn-primary--yellow">
-              <a href="#cardapio">Ver Cardápio</a>
-            </button>
-            <button class="btn-primary shadow-8dp">
-              <a href="" id="btnLigar"> <i class="fa-solid fa-phone"></i>(88) 999834281</a>
-            </button>
-          </div>
-          <div class="banner__content__social-icons">
-            <a href="#"><i class="fab fa-instagram shadow-8dp"></i></a>
-            <a href="#"><i class="fab fa-facebook-f shadow-8dp"></i></a>
-            <a href="#"><i class="fab fa-whatsapp shadow-8dp"></i></a>
-          </div>
-        </div>
-        <div class="banner__images">
-          <img src="./assets/img/burguer.png" alt="" />
-          <span class="banner__images__shape"></span>
-
-          <div class="depoimento shadow-8dp">
-            "Entrega rápida e funcionarios simpáticos. A comida chegou quente muito saborosa!"
-            <span>Thiago Lopes</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="servicos container container-servicos" id="servicos">
-      <div class="grid">
-        <div class="section__title">
-          <h3 class="title--sections">Serviços</h3>
-          <p class="subtitles--sections">Como são nossos serviços?</p>
-        </div>
-
-        <div class="servicos__items">
-          <img src="assets/img/icone-pedido.svg" alt="Pedido" width="140" id="first" />
-          <span class="title--cards">Fácil de pedir</span>
-          <div class="servicos__content">
-            <p>você só precisa de alguns passos para pedir sua comida.</p>
-          </div>
-        </div>
-        <div class="servicos__items">
-          <img src="assets/img/icone-qualidade.svg" alt="Delivery" width="250" />
-          <span class="title--cards">Melhor Qualidade</span>
-          <div class="servicos__content">
-            <p>Não só a rápidez na entrega, a qualidade também é o nosso forte.</p>
-          </div>
-        </div>
-        <div class="servicos__items">
-          <img src="assets/img/icone-delivery.svg" alt="Delivery" width="250" />
-          <span class="title--cards">Entrega Rápida</span>
-          <div class="servicos__content">
-            <p>Nossa entrega é sempre pontual, rápida e segura.</p>
-          </div>
-        </div>
-      </div>
-      <div class="bg"></div>
-    </section>
-
-    <main class="cardapio container container--cardapio" id="cardapio">
-      <div class="section__title">
-        <h3 class="title--sections">Cardápio</h3>
-        <p class="subtitles--sections">Conheça nosso Cardápio</p>
-      </div>
-
-      <div class="cardapio__categories" data-categorias>
-        <ul>
+        <ul id="menu" role="menu" data-menu="scroll">
           <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('aves')" id="menu-aves">
-              <i class="fas fa-hamburger"></i>Aves</a
-            >
+            <a href="#carrinho" data-modal="btn" onclick="cardapio.metodos.abrirCarrinho(true)">Carrinho<i
+                class="fa-solid fa-bag-shopping"></i></a>
+
           </li>
           <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('pizzas')"
-            id="menu-pizzas"><i class="fas fa-pizza-slice"></i>Pizzas</a
-            >
+            <a href="#cardapio">Cardápio<img src="assets/img/icon-cardapio.svg" alt=""></a>
           </li>
           <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('churrasco')"
-            id="menu-churrasco"><i class="fas fa-drumstick-bite"></i>Churrasco</a
-            >
+            <a href="#servicos">Serviços <img src="assets/img/icon-servicos.svg" alt=""></a>
           </li>
           <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('steaks')" id="menu-steaks"> <i class="fas fa-bacon"></i>Steaks</a>
+
+            <a href="#reserva"> Reserva<img src="./assets/img/icon-reserva.svg" alt=""></a>
+
           </li>
           <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('bebidas')"
-            id="menu-bebidas"><i class="fas fa-cocktail"></i>Bebidas</a
-            >
-          </li>
-          <li>
-            <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sobremesas')"
-            id="menu-sobremesas"><i class="fas fa-ice-cream"></i>Sobremesas</a
-            >
+            <a href="#depoimentos">Depoimentos<img src="assets/img/icon-servicos.svg" alt=""></a>
           </li>
         </ul>
+      </nav>
+      <div class="container-cart">
+        <button class="btn-primary shadow-8dp" data-modal="btn-meuCarrinho">
+
+          <a onclick="cardapio.metodos.abrirCarrinho(true)">Meu carrinho
+            <div class="badge-total-carrinho container-total-carrinho bagde-botao-superior hidden">8</div>
+            <i class="fa-solid fa-bag-shopping"></i>
+          </a>
+
+        </button>
       </div>
-
-      <div class="cardapio__cards" data-cardapio>
-
-    
-      </div>
-
-      <div class="bg bg--cardapio"></div>
-
-      <button class="btn-primary shadow-8dp" data-vermais  id="vermais">
-        <a onclick="cardapio.metodos.verMais()">Ver mais</a>
-      </button>
-    </main>
-
-    <section class="depoimentos" id="depoimentos">
-      <div class="container container-depoimentos">
-        <!-- Imagem grade -->
-        <div class="depoimentos__image">
-          <img src="./assets/img/pizzas.png" alt="" />
-        </div>
+    </div>
+  </header>
 
 
-
-        <div class="depoimentos__content">
-          <div class="depoimentos__content__title">
-            <div class="section__title section__title--depoimentos">
-              <h3 class="title--sections">Depoimentos</h3>
-              <p class="subtitles--sections">O que dizem sobre nós?</p>
-            </div>
-          </div>
-
-          <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
-
-            <div class="depoimentos__content__feedback__client">
-              <div class="depoimentos__content__feedback__client__image">
-                <img src="assets/img/ana.jpg" alt="" />
-              </div>
-      
-              <div class="depoimentos__content__feedback__client__name">
-                <div class="depoimentos__content__feedback__client__name__avaliate">
-                  <span id="name-client">Ana Beatriz</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <!-- <i class="fa fa fa-star-half-alt"></i> -->
-                  <span>5.0</span>
-                </div>
-              </div>
-            </div>
-           
-            <div class="depoimentos__content__feedback__client__text">
-              <span id="left"><i class="fa-solid fa-quote-left"></i></span>
-              <p>
-               
-                  Um jantar perfeito do começo ao fim. comida, experiência, serviço... foi tão maravilhoso que fomos dois dias seguidos - fato inédito para mim em uma viagem.
-              </p>
-              <span id="right"><i class="fa-solid fa-quote-right"></i></span>
-            </div>
-
-
-          </div>
-          <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
-
-            <div class="depoimentos__content__feedback__client">
-              <div class="depoimentos__content__feedback__client__image">
-                <img src="assets/img/joao.jpg" alt="" />
-              </div>
-      
-              <div class="depoimentos__content__feedback__client__name">
-                <div class="depoimentos__content__feedback__client__name__avaliate">
-                  <span id="name-client">João Guilherme</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <!-- <i class="fa fa fa-star-half-alt"></i> -->
-                  <span>4.0</span>
-                </div>
-              </div>
-            </div>
-           
-            <div class="depoimentos__content__feedback__client__text">
-              <span id="left"><i class="fa-solid fa-quote-left"></i></span>
-              <p>
-                A comida estava excelente e o serviço gentil nos supreendeu! Dica: reserve umas 3 horas para ter uma experiência incrível.
-              </p>
-              <span id="right"><i class="fa-solid fa-quote-right"></i></span>
-            </div>
-
-
-          </div>
-          <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
-
-            <div class="depoimentos__content__feedback__client">
-              <div class="depoimentos__content__feedback__client__image">
-                <img src="assets/img/diego.jpg" alt="" />
-              </div>
-      
-              <div class="depoimentos__content__feedback__client__name">
-                <div class="depoimentos__content__feedback__client__name__avaliate">
-                  <span id="name-client">Diego Pereira</span>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-alt"></i>
-                  <!-- <i class="fa fa fa-star-half-alt"></i> -->
-                  <span>4.5</span>
-                </div>
-              </div>
-            </div>
-           
-            <div class="depoimentos__content__feedback__client__text">
-              <span id="left"><i class="fa-solid fa-quote-left"></i></span>
-              <p>
-                Muito bom, recomendo demais! Comida muito bem feita pelo chefe, atendimento dentro dos parâmetros e boa comunicação com o cliente.
-              </p>
-              <span id="right"><i class="fa-solid fa-quote-right"></i></span>
-            </div>
-
-
-          </div>
-
-          <div class="depoimentos__content__pages">
-            <button class="shadow-8dp" data-depoimentos="buttons">
-              <a href="#">1</i></a>
-            </button>
-            <button class="shadow-8dp" data-depoimentos="buttons">
-              <a href="#">2</i></a>
-            </button>
-            <button class="shadow-8dp" data-depoimentos="buttons">
-              <a href="#">3</i></a>
-            </button>
-          </div>
-
-          <div class="bg bg--cardapio"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="reserva" id="reserva">
-
-      <div class="container container--reserva">
-
-        <div class="reserva__content">
-          <div class="section__title">
-            <h3 class="title--sections">Reserva</h3>
-            <p class="subtitles--sections">Quer reservar um horário</p>
-          </div>
-          <p class="reserva__text">
-            Mande uma mensagem clicando no botão abaixo
-             Reserve sua data e horário de forma simples e rápida.
+  <section class="banner" id="banner">
+    <div class="container container--banner">
+      <div class="banner__content">
+        <div class="banner__content__text">
+          <h1 class="title">Escolha sua comida <span class="primary-color">favorita.</span></h1>
+          <p class="paragraphs">
+            Aproveite nosso cardapio! Escolha oque desejar e receba em sua casa de forma rápida e
+            segura.
           </p>
+        </div>
+        <div class="banner__button">
           <button class="btn-primary btn-primary--yellow">
-            <a href="#" id="btnReserva" target="_blank">Fazer Reserva</a>
+            <a href="#cardapio">Ver Cardápio</a>
+          </button>
+          <button class="btn-primary shadow-8dp">
+            <a href="" id="btnLigar"> <i class="fa-solid fa-phone"></i>(88) 999834281</a>
+          </button>
+        </div>
+        <div class="banner__content__social-icons">
+          <a href="#"><i class="fab fa-instagram shadow-8dp"></i></a>
+          <a href="#"><i class="fab fa-facebook-f shadow-8dp"></i></a>
+          <a href="#"><i class="fab fa-whatsapp shadow-8dp"></i></a>
+        </div>
+      </div>
+      <div class="banner__images">
+        <img src="./assets/img/burguer.png" alt="" />
+        <span class="banner__images__shape"></span>
+
+        <div class="depoimento shadow-8dp">
+          "Entrega rápida e funcionarios simpáticos. A comida chegou quente muito saborosa!"
+          <span>Thiago Lopes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicos container container-servicos" id="servicos">
+    <div class="grid">
+      <div class="section__title">
+        <h3 class="title--sections">Serviços</h3>
+        <p class="subtitles--sections">Como são nossos serviços?</p>
+      </div>
+
+      <div class="servicos__items">
+        <img src="assets/img/icone-pedido.svg" alt="Pedido" width="140" id="first" />
+        <span class="title--cards">Fácil de pedir</span>
+        <div class="servicos__content">
+          <p>você só precisa de alguns passos para pedir sua comida.</p>
+        </div>
+      </div>
+      <div class="servicos__items">
+        <img src="assets/img/icone-qualidade.svg" alt="Delivery" width="250" />
+        <span class="title--cards">Melhor Qualidade</span>
+        <div class="servicos__content">
+          <p>Não só a rápidez na entrega, a qualidade também é o nosso forte.</p>
+        </div>
+      </div>
+      <div class="servicos__items">
+        <img src="assets/img/icone-delivery.svg" alt="Delivery" width="250" />
+        <span class="title--cards">Entrega Rápida</span>
+        <div class="servicos__content">
+          <p>Nossa entrega é sempre pontual, rápida e segura.</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg"></div>
+  </section>
+
+  <main class="cardapio container container--cardapio" id="cardapio">
+    <div class="section__title">
+      <h3 class="title--sections">Cardápio</h3>
+      <p class="subtitles--sections">Conheça nosso Cardápio</p>
+    </div>
+
+    <div class="cardapio__categories" data-categorias>
+      <ul>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('aves')" id="menu-aves">
+            <i class="fas fa-hamburger"></i>Aves</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('carnes')"
+            id="menu-carnes"><i class="fas fa-pizza-slice"></i>Carnes</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('peixes')"
+            id="menu-peixes"><i class="fas fa-drumstick-bite"></i>Peixes</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('suino')" id="menu-suino">
+            <i class="fas fa-bacon"></i>Suíno</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('lowCarb')"
+            id="menu-lowCarb"><i class="fas fa-cocktail"></i>Low Carb</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('caldinhos')"
+            id="menu-vegetariano"><i class="fas fa-ice-cream"></i>Vegetariano</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('caldinhos')"
+            id="menu-caldinhos"><i class="fas fa-ice-cream"></i>Caldinhos</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('crepioca')"
+            id="menu-crepioca"><i class="fas fa-ice-cream"></i>Crepioca</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucosDetox')"
+            id="menu-sucosDetox"><i class="fas fa-ice-cream"></i>Sucos Detox</a>
+        </li>
+        <li>
+          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucos')"
+            id="menu-sucos"><i class="fas fa-ice-cream"></i>Sucos</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="cardapio__cards" data-cardapio>
+
+
+    </div>
+
+    <div class="bg bg--cardapio"></div>
+
+    <button class="btn-primary shadow-8dp" data-vermais id="vermais">
+      <a onclick="cardapio.metodos.verMais()">Ver mais</a>
+    </button>
+  </main>
+
+  <section class="depoimentos" id="depoimentos">
+    <div class="container container-depoimentos">
+      <!-- Imagem grade -->
+      <div class="depoimentos__image">
+        <img src="./assets/img/pizzas.png" alt="" />
+      </div>
+
+
+
+      <div class="depoimentos__content">
+        <div class="depoimentos__content__title">
+          <div class="section__title section__title--depoimentos">
+            <h3 class="title--sections">Depoimentos</h3>
+            <p class="subtitles--sections">O que dizem sobre nós?</p>
+          </div>
+        </div>
+
+        <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
+
+          <div class="depoimentos__content__feedback__client">
+            <div class="depoimentos__content__feedback__client__image">
+              <img src="assets/img/ana.jpg" alt="" />
+            </div>
+
+            <div class="depoimentos__content__feedback__client__name">
+              <div class="depoimentos__content__feedback__client__name__avaliate">
+                <span id="name-client">Ana Beatriz</span>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <!-- <i class="fa fa fa-star-half-alt"></i> -->
+                <span>5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="depoimentos__content__feedback__client__text">
+            <span id="left"><i class="fa-solid fa-quote-left"></i></span>
+            <p>
+
+              Um jantar perfeito do começo ao fim. comida, experiência, serviço... foi tão maravilhoso que fomos dois
+              dias seguidos - fato inédito para mim em uma viagem.
+            </p>
+            <span id="right"><i class="fa-solid fa-quote-right"></i></span>
+          </div>
+
+
+        </div>
+        <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
+
+          <div class="depoimentos__content__feedback__client">
+            <div class="depoimentos__content__feedback__client__image">
+              <img src="assets/img/joao.jpg" alt="" />
+            </div>
+
+            <div class="depoimentos__content__feedback__client__name">
+              <div class="depoimentos__content__feedback__client__name__avaliate">
+                <span id="name-client">João Guilherme</span>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="far fa-star"></i>
+                <!-- <i class="fa fa fa-star-half-alt"></i> -->
+                <span>4.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="depoimentos__content__feedback__client__text">
+            <span id="left"><i class="fa-solid fa-quote-left"></i></span>
+            <p>
+              A comida estava excelente e o serviço gentil nos supreendeu! Dica: reserve umas 3 horas para ter uma
+              experiência incrível.
+            </p>
+            <span id="right"><i class="fa-solid fa-quote-right"></i></span>
+          </div>
+
+
+        </div>
+        <div class="depoimentos__content__feedback hidden" data-depoimentos="feed">
+
+          <div class="depoimentos__content__feedback__client">
+            <div class="depoimentos__content__feedback__client__image">
+              <img src="assets/img/diego.jpg" alt="" />
+            </div>
+
+            <div class="depoimentos__content__feedback__client__name">
+              <div class="depoimentos__content__feedback__client__name__avaliate">
+                <span id="name-client">Diego Pereira</span>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-alt"></i>
+                <!-- <i class="fa fa fa-star-half-alt"></i> -->
+                <span>4.5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="depoimentos__content__feedback__client__text">
+            <span id="left"><i class="fa-solid fa-quote-left"></i></span>
+            <p>
+              Muito bom, recomendo demais! Comida muito bem feita pelo chefe, atendimento dentro dos parâmetros e boa
+              comunicação com o cliente.
+            </p>
+            <span id="right"><i class="fa-solid fa-quote-right"></i></span>
+          </div>
+
+
+        </div>
+
+        <div class="depoimentos__content__pages">
+          <button class="shadow-8dp" data-depoimentos="buttons">
+            <a href="#">1</i></a>
+          </button>
+          <button class="shadow-8dp" data-depoimentos="buttons">
+            <a href="#">2</i></a>
+          </button>
+          <button class="shadow-8dp" data-depoimentos="buttons">
+            <a href="#">3</i></a>
           </button>
         </div>
 
-        <div class="reserva__image">
-          <img src="./assets/img/icone-reservas.svg" alt="">
+        <div class="bg bg--cardapio"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserva" id="reserva">
+
+    <div class="container container--reserva">
+
+      <div class="reserva__content">
+        <div class="section__title">
+          <h3 class="title--sections">Reserva</h3>
+          <p class="subtitles--sections">Quer reservar um horário</p>
+        </div>
+        <p class="reserva__text">
+          Mande uma mensagem clicando no botão abaixo
+          Reserve sua data e horário de forma simples e rápida.
+        </p>
+        <button class="btn-primary btn-primary--yellow">
+          <a href="#" id="btnReserva" target="_blank">Fazer Reserva</a>
+        </button>
+      </div>
+
+      <div class="reserva__image">
+        <img src="./assets/img/icone-reservas.svg" alt="">
+      </div>
+
+    </div>
+  </section>
+
+  <span class="go-to-start shadow-12dp" data-gotostart><i class="fas fa-arrow-up"></i></span>
+
+
+  <section class="modal-carrinho hidden" data-modal="modal">
+    <div class="container container--modal">
+      <div class="etapas">
+
+        <div class="etapas-container">
+          <div class="etapas-numeros">
+            <span class="shadow-8dp etapa etapa1">1</span>
+            <span class="line line1"></span>
+            <span class="shadow-8dp etapa etapa2">2</span>
+            <span class="line line2 "></span>
+            <span class="shadow-8dp etapa etapa3">3</span>
+          </div>
+
+          <div class="botao-fechar">
+            <button class="btn-primary btn-primary--fechar shadow-8dp" data-modal="btn-fechar"
+              onclick="cardapio.metodos.abrirCarrinho(false)">
+              <a href="#">Fechar</a>
+            </button>
+          </div>
+
+        </div>
+        <div class="titulo-carrinho " data-modal="titulo-etapas">
+          <h4>Seu Carrinho</h4>
         </div>
 
       </div>
-    </section>
-
-    <span class="go-to-start shadow-12dp" data-gotostart><i class="fas fa-arrow-up"></i></span>
 
 
-    <section class="modal-carrinho hidden"  data-modal="modal">
-        <div class="container container--modal">
-          <div class="etapas">
-          
-            <div class="etapas-container">
-              <div class="etapas-numeros">
-                <span class="shadow-8dp etapa etapa1">1</span>
-                <span class="line line1"></span>
-                <span class="shadow-8dp etapa etapa2">2</span>
-                <span class="line line2 "></span>
-                <span class="shadow-8dp etapa etapa3">3</span>
-              </div>
-      
-                <div class="botao-fechar">
-                  <button class="btn-primary btn-primary--fechar shadow-8dp" data-modal="btn-fechar" onclick="cardapio.metodos.abrirCarrinho(false)">
-                    <a href="#">Fechar</a>
-                  </button>
-                </div>
-      
-            </div>
-            <div class="titulo-carrinho " data-modal="titulo-etapas">
-              <h4>Seu Carrinho</h4>
-            </div>
 
-          </div>
-    
-         
-    
-          <div class="produtos-container hidden scrollContainer  " data-modal="produtos">
-    
-            <!-- <div class="produto">
+      <div class="produtos-container hidden scrollContainer  " data-modal="produtos">
+
+        <!-- <div class="produto">
     
               <div class="produto-image">
                 <img src="assets/img/cardapio/burguers/gotts-complete-cheeseburger-kit-for-4.7bdc74104b193427b3fe6eae39e05b5e.jpg" alt="">
@@ -662,91 +674,91 @@
                 </div>
               </div>
             </div> -->
+      </div>
+
+      <div class="local-entrega scrollContainer hidden" data-modal="entrega">
+        <form action="#" method="post" class="grid-form">
+
+          <div class="cep control-form">
+            <label for="cep">CEP:
+              <div class="cep-container">
+                <input type="text" id="cep" name="cep" autofocus class="shadow-8dp">
+                <a class="btn-primary" onclick="cardapio.metodos.buscarCep()"><i class="fa fa-search"></i></a>
+              </div>
+            </label>
           </div>
+          <div class="endereco control-form">
+            <label for="endereco">Endereço:
+              <input type="text" id="endereco" name="endereco" autofocus class="shadow-8dp">
 
-          <div class="local-entrega scrollContainer hidden" data-modal="entrega">
-            <form action="#" method="post" class="grid-form">
-
-              <div class="cep control-form" >
-                <label for="cep">CEP:
-                  <div class="cep-container">
-                    <input type="text" id="cep" name="cep" autofocus class="shadow-8dp">
-                    <a class="btn-primary" onclick="cardapio.metodos.buscarCep()"><i class="fa fa-search"></i></a>
-                  </div>
-                </label>
-              </div>
-              <div class="endereco control-form" >
-                <label for="endereco" >Endereço:
-                  <input type="text" id="endereco" name="endereco" autofocus class="shadow-8dp">
-                 
-                </label>
-         
-              </div>
-              <div class="bairro control-form" >
-                <label for="bairro">Bairro:
-                  <input type="text" id="bairro" name="bairro" autofocus class="shadow-8dp">
-                </label>
-              </div>
-              <div class="numero control-form" >
-                <label for="numero">Número:
-                  <input type="text" id="numero" name="numero" autofocus class="shadow-8dp">
-                </label>
-              </div>
-              <div class="cidade control-form" >
-                <label for="cidade">Cidade:
-                  <input type="text" id="cidade" name="cidade" autofocus class="shadow-8dp">
-                </label>
-              </div>
-              <div class="complemento control-form" >
-                <label for="complemento">Complemento:
-                  <input type="text" id="complemento" name="complemento" autofocus class="shadow-8dp">
-                </label>
-              </div>
-              <div class="uf control-form" >
-                <label for="uf">UF:
-                  <select name="uf" id="uf" class="shadow-8dp">
-
-                    <option value="">...</option>
-                    <option value="AC">	AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">	SP</option>
-                    <option value="SE">	SE</option>
-                    <option value="TO">	TO</option>
-                  </select>
-                </label>
-              </div>
-            
-             
-
-            </form>
+            </label>
 
           </div>
+          <div class="bairro control-form">
+            <label for="bairro">Bairro:
+              <input type="text" id="bairro" name="bairro" autofocus class="shadow-8dp">
+            </label>
+          </div>
+          <div class="numero control-form">
+            <label for="numero">Número:
+              <input type="text" id="numero" name="numero" autofocus class="shadow-8dp">
+            </label>
+          </div>
+          <div class="cidade control-form">
+            <label for="cidade">Cidade:
+              <input type="text" id="cidade" name="cidade" autofocus class="shadow-8dp">
+            </label>
+          </div>
+          <div class="complemento control-form">
+            <label for="complemento">Complemento:
+              <input type="text" id="complemento" name="complemento" autofocus class="shadow-8dp">
+            </label>
+          </div>
+          <div class="uf control-form">
+            <label for="uf">UF:
+              <select name="uf" id="uf" class="shadow-8dp">
 
-          <div class="resumo-pedido scrollContainer hidden" data-modal="resumo">
+                <option value="">...</option>
+                <option value="AC"> AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP"> SP</option>
+                <option value="SE"> SE</option>
+                <option value="TO"> TO</option>
+              </select>
+            </label>
+          </div>
 
-            <!-- <div class="produto produto-resumo">
+
+
+        </form>
+
+      </div>
+
+      <div class="resumo-pedido scrollContainer hidden" data-modal="resumo">
+
+        <!-- <div class="produto produto-resumo">
     
               <div class="produto-image produto-image--resumo">
                 <img src="assets/img/cardapio/burguers/gotts-complete-cheeseburger-kit-for-4.7bdc74104b193427b3fe6eae39e05b5e.jpg" alt="">
@@ -764,113 +776,117 @@
             </div> -->
 
 
-          </div>
+      </div>
 
-          <div class="resumo-endereco hidden" data-modal="resumo-endereco">
-           <p class="titulo-carrinho ">Local da entrega:</p> 
-           <div class="resumo-endereco__dados">
-            <span><i class="fa-solid fa-location-dot"></i></span>
-            <div class="dados">
-              <p>
-                <span class="nome-endereco"></span> 
-              </p>
-              <p>
-                <span class="nome-localidade"></span>
-              </p>
+      <div class="resumo-endereco hidden" data-modal="resumo-endereco">
+        <p class="titulo-carrinho ">Local da entrega:</p>
+        <div class="resumo-endereco__dados">
+          <span><i class="fa-solid fa-location-dot"></i></span>
+          <div class="dados">
+            <p>
+              <span class="nome-endereco"></span>
+            </p>
+            <p>
+              <span class="nome-localidade"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="total ">
+        <div class="total-infos">
+          <div class="subtotal">
+
+            <p class="valor-subtotal">
+              <span>Subtotal:</span>
+              <span id="valorSubtotal">R$ 0,00</span>
+            </p>
+
+            <p class="valor-entrega">
+              <span><i class="fas fa-motorcycle"></i>Entrega:</span>
+              <span id="valorEntrega">+ R$ 0,00</span>
+            </p>
+
+            <p class="valor-total">
+              <span>Total:</span>
+              <span id="valorTotal">R$ 100,00</span>
+            </p>
+
+            <div class="total-botao">
+              <button class="btn-primary  button-total shadow-8dp hidden" data-modal="btn-voltar"
+                onclick="cardapio.metodos.voltarEtapa()">
+                <a href="#">Voltar</a>
+              </button>
+              <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-revisar"
+                onclick="cardapio.metodos.resumoPedido()">
+                <a href="#">Revisar Pedido</a>
+              </button>
+              <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-continuar"
+                onclick="cardapio.metodos.carregarEndereco()">
+                <a href="#">Continuar</a>
+              </button>
+              <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-enviar">
+                <a href="" id="enviarPedido" target="_blank">Enviar</a>
+              </button>
+
+
             </div>
-           </div>
+
           </div>
-          
-    
-          <div class="total ">
-              <div class="total-infos">
-                  <div class="subtotal">
-
-                    <p class="valor-subtotal">
-                      <span>Subtotal:</span>
-                      <span id="valorSubtotal">R$ 0,00</span>
-                    </p>
-
-                    <p class="valor-entrega">
-                      <span><i class="fas fa-motorcycle"></i>Entrega:</span>
-                      <span id="valorEntrega">+ R$ 0,00</span>
-                    </p>
-
-                    <p class="valor-total">
-                      <span>Total:</span>
-                      <span id="valorTotal">R$ 100,00</span>
-                    </p>
-
-                  <div class="total-botao">
-                    <button class="btn-primary  button-total shadow-8dp hidden" data-modal="btn-voltar" onclick="cardapio.metodos.voltarEtapa()">
-                      <a href="#" >Voltar</a>
-                    </button>
-                    <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-revisar" onclick="cardapio.metodos.resumoPedido()">
-                      <a href="#">Revisar Pedido</a>
-                    </button>
-                    <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-continuar" onclick="cardapio.metodos.carregarEndereco()">
-                      <a href="#">Continuar</a>
-                    </button>
-                    <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-enviar">
-                      <a href="" id="enviarPedido" target="_blank">Enviar</a>
-                    </button>
-                
-        
-                  </div>
-
-                  </div>
-              </div>
-          </div>
-
-     
-    </section>
-
-
-    <footer class="footer" id="footer">
-      <div class="footer__logo">
-        <img src="assets/img/logo.png" alt="">
-      </div>
-
-      <div class="copy">
-
-        <p>
-          <b>Menu On-line</b> &copy; Todos os direitos reservados.
-        </p>
-        <p class="funcionamento" data-horario="8,22" data-semana="0,1,2,3,4,5,6">Seg a Dom das 8h às 22h 
-
-
-          <span class="isOpen"  data-isopen>Aberto</span>
-        </p>
-        
-      </div>  
-
-    
-
-      <div class=" banner__content__social-icons">
-        <a href="#"><i class="fab fa-instagram shadow-8dp"></i></a>
-        <a href="#"><i class="fab fa-facebook-f shadow-8dp"></i></a>
-        <a href="#"><i class="fab fa-whatsapp shadow-8dp"></i></a>
+        </div>
       </div>
 
 
-    </footer>
-
-    <!-- Caminho da nuvem -->
+  </section>
 
 
-    <!-- <script src="/cardapio/jquery-1.12.4.min.js"></script>
+  <footer class="footer" id="footer">
+    <div class="footer__logo">
+      <img src="assets/img/logo.png" alt="">
+    </div>
+
+    <div class="copy">
+
+      <p>
+        <b>Menu On-line</b> &copy; Todos os direitos reservados.
+      </p>
+      <p class="funcionamento" data-horario="8,22" data-semana="0,1,2,3,4,5,6">Seg a Dom das 8h às 22h
+
+
+        <span class="isOpen" data-isopen>Aberto</span>
+      </p>
+
+    </div>
+
+
+
+    <div class=" banner__content__social-icons">
+      <a href="#"><i class="fab fa-instagram shadow-8dp"></i></a>
+      <a href="#"><i class="fab fa-facebook-f shadow-8dp"></i></a>
+      <a href="#"><i class="fab fa-whatsapp shadow-8dp"></i></a>
+    </div>
+
+
+  </footer>
+
+  <!-- Caminho da nuvem -->
+
+
+  <!-- <script src="/cardapio/jquery-1.12.4.min.js"></script>
     <script  src="/cardapio/dados.js"></script>
     <script  src="/cardapio/cardapio.js"></script> -->
 
 
-    <!-- caminho local -->
+  <!-- caminho local -->
 
-    <script src="./jquery-1.12.4.min.js"></script>
-    <script  src="./dados.js"></script>
-    <script  src="./cardapio.js"></script>  
+  <script src="./jquery-1.12.4.min.js"></script>
+  <script src="./dados.js"></script>
+  <script src="./cardapio.js"></script>
 
 
-    <script type="module" src="./assets/scripts/main.js"></script>
-    
-  </body>
+  <script type="module" src="./assets/scripts/main.js"></script>
+
+</body>
+
 </html>
