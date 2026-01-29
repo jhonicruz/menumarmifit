@@ -5,7 +5,7 @@
 
 //   // containers
 //   const modalContainer = selecionarElementoDom('[data-modal="modal"]');
-//   const produtosContainer = selecionarElementoDom('[data-modal="produtos"]');
+//   const produtosContainer = selecionarElementoDom('[data-modal="products"]');
 //   const entregaContainer = selecionarElementoDom('[data-modal="entrega"]');
 //   const menuContainer = selecionarElementoDom("#menu");
 //   const resumoPedido = selecionarElementoDom("[data-modal='resumo']");

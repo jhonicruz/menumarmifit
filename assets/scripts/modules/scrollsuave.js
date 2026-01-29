@@ -1,4 +1,4 @@
-// import initModalCarrinho from "./modal-carrinho.js";
+// import initModalCarrinho from "./modal-cart.js";
 // const { fecharModal, continuar, voltarMeio, voltarInicio, revisarPedido } = initModalCarrinho();
 
 export default function initScrollSuave() {
@@ -14,8 +14,7 @@ export default function initScrollSuave() {
     function handleClick(e) {
       e.preventDefault();
 
-      const constainsClassOpen =
-        menuContainer.classList.contains("open") && toggleMenu.classList.contains("open");
+      const constainsClassOpen = menuContainer.classList.contains("open") && toggleMenu.classList.contains("open");
 
       const elementTarget = e.target;
       const containsAttributeModal = elementTarget.hasAttribute("data-modal");
