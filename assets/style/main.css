@@ -8,13 +8,15 @@
 @import "./components/link-categories.css";
 @import "./components/go-to-start.css";
 @import "./components/bg.css";
-@import "./components/modal-carrinho.css";
 @import "./components/alerts.css";
 @import "./components/cards.css";
 @import "./components/categories.css";
 @import "./components/add-to-cart.css";
 @import "./components/badge-total.css";
 @import "./components/btn-cart.css";
+@import "./components/modal-cart.css";
+@import "./components/steps.css";
+@import "./components/cart.css";
 @import "./layout/header.css";
 @import "./layout/banner.css";
 @import "./layout/servicos.css";

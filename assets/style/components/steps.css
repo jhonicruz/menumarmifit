@@ -1,0 +1,79 @@
+.etapas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.etapas-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+
+  padding: 1rem 0;
+}
+
+.etapas-numeros {
+  display: flex;
+
+  position: relative;
+
+  width: max-content;
+  justify-content: space-between;
+  align-items: center;
+  width: 16.8rem;
+  position: relative;
+}
+
+.etapa {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  transition: 250ms ease-in-out;
+  border: 1px solid transparent;
+}
+
+.etapa.checked {
+  background-color: var(--color-primary);
+}
+
+.etapa1.checked,
+.etapa2.checked,
+.etapa3.checked {
+  background-color: var(--color-primary);
+  border: 1px solid rgba(5, 5, 5, 0.466);
+}
+
+.line {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: rgb(240, 32, 32);
+  border-radius: initial;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left;
+  z-index: -1;
+  transition: 350ms;
+}
+
+.line1 {
+  left: 36px;
+}
+
+.line2 {
+  left: 102px;
+}
+
+.line1.checked,
+.line2.checked {
+  width: 30px;
+  background-color: var(--color-primary);
+}
