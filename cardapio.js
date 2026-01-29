@@ -34,7 +34,7 @@ cardapio.metodos = {
     var filtro = MENU[categoria];
 
     if (!vermais) {
-      $(".cardapio__cards").html("");
+      $("[data-cards]").html("");
       $("#vermais").removeClass("hidden");
     }
 
@@ -56,24 +56,24 @@ cardapio.metodos = {
       // Clicou em ver mais (+ 4 itens)
 
       if (vermais && i >= 8 && i < 12) {
-        $(".cardapio__cards").append(temp);
+        $("[data-cards]").append(temp);
       }
 
       // Paginação inicial (8 itens)
 
       if (!vermais && i < 8) {
-        $(".cardapio__cards").append(temp);
+        $("[data-cards]").append(temp);
       }
     });
 
-    $(".cardapio__categories ul li a").removeClass("ativo");
+    $(".categories ul li a").removeClass("ativo");
 
     $("#menu-" + categoria).addClass("ativo");
   },
 
   // Clique no botão de Ver mais
   verMais: () => {
-    var ativo = $(".cardapio__categories ul li a").attr("id").split("menu-")[1];
+    var ativo = $(".categories ul li a.ativo").attr("id").split("menu-")[1];
     cardapio.metodos.obterItensCardapio(ativo, true);
 
     $("#vermais").addClass("hidden");
@@ -98,7 +98,12 @@ cardapio.metodos = {
 
     if (qntdAtual > 0) {
       // Obter a categoria Ativa
-      let categoria = $(".cardapio__categories ul li a.ativo").attr("id").split("menu-")[1];
+      let categoriaElement = $(".categories ul li a.ativo").attr("id");
+      if (!categoriaElement) {
+        cardapio.metodos.mensagem("Erro: nenhuma categoria selecionada", "red");
+        return;
+      }
+      let categoria = categoriaElement.split("menu-")[1];
 
       //obtem a lista de itens
 
@@ -146,14 +151,14 @@ cardapio.metodos = {
     });
 
     if (total > 0) {
-      $(".botao-carrinho").removeClass("hidden");
+      $(".btn-cart").removeClass("hidden");
       $(".container-total-carrinho").removeClass("hidden");
     } else {
-      $(".botao-carrinho").addClass("hidden");
+      $(".btn-cart").addClass("hidden");
       $(".container-total-carrinho").addClass("hidden");
     }
 
-    $(".badge-total-carrinho").html(total);
+    $(".badge-total").html(total);
   },
 
   abrirCarrinho: (abrir) => {
@@ -289,7 +294,7 @@ cardapio.metodos = {
       });
     } else {
       $(".produtos-container").html(
-        '<p class="carrinho-vazio" style="justify-self:center;"><i class="fa fa-shopping-bag"></i> Seu Carrinho está vazio</p>'
+        '<p class="carrinho-vazio" style="justify-self:center;"><i class="fa fa-shopping-bag"></i> Seu Carrinho está vazio</p>',
       );
 
       $(".produtos-container").css({
@@ -352,17 +357,13 @@ cardapio.metodos = {
     $.each(meuCarrinho, (i, e) => {
       valorCarrinho += parseFloat(e.price * e.qntd);
       if (i + 1 == meuCarrinho.length) {
-        $("#valorSubtotal").text(
-          `${valorCarrinho.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`
-        );
-        $("#valorEntrega").text(
-          `+ ${valorEntrega.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`
-        );
+        $("#valorSubtotal").text(`${valorCarrinho.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`);
+        $("#valorEntrega").text(`+ ${valorEntrega.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`);
         $("#valorTotal").text(
           `${(valorCarrinho + valorEntrega).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
-          })}`
+          })}`,
         );
       }
     });
@@ -485,11 +486,9 @@ cardapio.metodos = {
       $(".resumo-pedido").append(temp);
     });
 
-    $(".nome-endereco").html(
-      `${meuEndereco.endereco}, ${meuEndereco.numero}, ${meuEndereco.bairro} `
-    );
+    $(".nome-endereco").html(`${meuEndereco.endereco}, ${meuEndereco.numero}, ${meuEndereco.bairro} `);
     $(".nome-localidade").html(
-      `${meuEndereco.cidade}-${meuEndereco.uf} / ${meuEndereco.cep}.  ${meuEndereco.complemento}.`
+      `${meuEndereco.cidade}-${meuEndereco.uf} / ${meuEndereco.cep}.  ${meuEndereco.complemento}.`,
     );
 
     cardapio.metodos.finalizarPedido();
@@ -555,17 +554,17 @@ cardapio.metodos = {
 };
 
 cardapio.templates = {
-  item: `<div class=" box animar">
- <div class="cardapio__item shadow-8dp" id="\${id}">
- <div class="cardapio__item__image">
+  item: `<div class="box animar">
+ <div class="cards__item shadow-8dp" id="\${id}">
+ <div class="cards__item__image">
    <img
      src="\${img}"
      alt=""
    />
  </div>
 
- <div class="cardapio__item__content">
-   <div class="cardapio__item__content__text">
+ <div class="cards__item__content">
+   <div class="cards__item__content__text">
      <h3>\${name}</h3>
      <p>\${dsc}</p>
      <span class="kcal-peso">\${kcal}kcal | \${peso}</span>
@@ -592,7 +591,7 @@ cardapio.templates = {
 </div>
 </div>`,
 
-  itemCarrinho: `  <div class="produto ">
+  itemCarrinho: `  <div class="produto">
     
  <div class="produto-image">
    <img src="\${img}" alt="">

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg" />
   <script src="https://kit.fontawesome.com/f012a1f94f.js" crossorigin="anonymous"></script>
-  <title>Dr. Burguer - Seja Bem Vindo</title>
+  <title>Marmifit Iguatu - Seja Bem Vindo</title>
   <link rel="stylesheet" href="./assets/style/main.css" />
 </head>
 
@@ -14,9 +14,9 @@
 
   <div class="container-mensagens" id="container-mensagens"></div>
 
-  <a class="botao-carrinho shadow-8dp hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
+  <a class="btn-cart shadow-8dp hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
 
-    <div class="badge-total-carrinho">0</div>
+    <div class="badge-total">0</div>
     <i class="fa fa-shopping-bag"></i>
   </a>
 
@@ -57,7 +57,7 @@
         <button class="btn-primary shadow-8dp" data-modal="btn-meuCarrinho">
 
           <a onclick="cardapio.metodos.abrirCarrinho(true)">Meu carrinho
-            <div class="badge-total-carrinho container-total-carrinho bagde-botao-superior hidden">8</div>
+            <div class="badge-total container-total-carrinho badge-total-top hidden">8</div>
             <i class="fa-solid fa-bag-shopping"></i>
           </a>
 
@@ -141,10 +141,11 @@
       <p class="subtitles--sections">Conheça nosso Cardápio</p>
     </div>
 
-    <div class="cardapio__categories" data-categorias>
+    <div class="categories" data-categories>
       <ul>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('aves')" id="menu-aves">
+          <a class="link-categories shadow-8dp ativo" onclick="cardapio.metodos.obterItensCardapio('aves')"
+            id="menu-aves">
             <i class="fas fa-hamburger"></i>Aves</a>
         </li>
         <li>
@@ -156,37 +157,37 @@
             id="menu-peixes"><i class="fas fa-drumstick-bite"></i>Peixes</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('suino')" id="menu-suino">
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('suino')" id="menu-suino">
             <i class="fas fa-bacon"></i>Suíno</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('lowCarb')"
-            id="menu-lowCarb"><i class="fas fa-cocktail"></i>Low Carb</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('lowCarb')" id="menu-lowCarb"><i
+              class="fas fa-cocktail"></i>Low Carb</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('caldinhos')"
-            id="menu-vegetariano"><i class="fas fa-ice-cream"></i>Vegetariano</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('vegetariano')" id="menu-vegetariano"><i
+              class="fas fa-ice-cream"></i>Vegetariano</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('caldinhos')"
-            id="menu-caldinhos"><i class="fas fa-ice-cream"></i>Caldinhos</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('caldinhos')" id="menu-caldinhos"><i
+              class="fas fa-ice-cream"></i>Caldinhos</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('crepioca')"
-            id="menu-crepioca"><i class="fas fa-ice-cream"></i>Crepioca</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('crepioca')" id="menu-crepioca"><i
+              class="fas fa-ice-cream"></i>Crepioca</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucosDetox')"
-            id="menu-sucosDetox"><i class="fas fa-ice-cream"></i>Sucos Detox</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucosDetox')" id="menu-sucosDetox"><i
+              class="fas fa-ice-cream"></i>Sucos Detox</a>
         </li>
         <li>
-          <a class="link-categories shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucos')"
-            id="menu-sucos"><i class="fas fa-ice-cream"></i>Sucos</a>
+          <a class=" shadow-8dp" onclick="cardapio.metodos.obterItensCardapio('sucos')" id="menu-sucos"><i
+              class="fas fa-ice-cream"></i>Sucos</a>
         </li>
       </ul>
     </div>
 
-    <div class="cardapio__cards" data-cardapio>
+    <div class="cards" data-cards>
 
 
     </div>
