@@ -128,14 +128,14 @@ cardapio.metodos = {
     });
 
     if (total > 0) {
-      $(".botao-carrinho").removeClass("hidden");
+      $(".btn-cart").removeClass("hidden");
       $(".container-total-carrinho").removeClass("hidden");
     } else {
-      $(".botao-carrinho").addClass("hidden");
+      $(".btn-cart").addClass("hidden");
       $(".container-total-carrinho").addClass("hidden");
     }
 
-    $(".badge-total-carrinho").html(total);
+    $(".badge-total").html(total);
   },
 
   abrirCarrinho: (abrir) => {
@@ -259,16 +259,16 @@ cardapio.metodos = {
 
 cardapio.templates = {
   item: `<div class=" box animar">
- <div class="cardapio__item shadow-8dp" id="\${id}">
- <div class="cardapio__item__image">
+ <div class="cards__item shadow-8dp" id="\${id}">
+ <div class="cards__item__image">
    <img
      src="\${img}"
      alt=""
    />
  </div>
 
- <div class="cardapio__item__content">
-   <div class="cardapio__item__content__text">
+ <div class="cards__item__content">
+   <div class="cards__item__content__text">
      <h3>\${name}</h3>
      <span>\${price}</span>
    </div>
