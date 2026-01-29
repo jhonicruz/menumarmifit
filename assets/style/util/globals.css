@@ -57,6 +57,32 @@
   padding: 2rem;
 }
 
+.box {
+  transition: 900ms;
+}
+
+.box.animar {
+  animation: slide ease 900ms forwards;
+}
+
+.scrollContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: var(--color-white);
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 @media (max-width: 600px) {
   .title {
     text-align: center;
