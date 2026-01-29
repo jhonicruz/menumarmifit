@@ -509,7 +509,7 @@ cardapio.metodos = {
       var itens = "";
 
       $.each(meuCarrinho, (i, e) => {
-        itens += `*${e.qntd}X* ${e.name} ...... R$ ${e.price.toFixed(2).replace(".", ",")}\n`;
+        itens += `*${e.qntd}x* ${e.name} ...... R$ ${e.price.toFixed(2).replace(".", ",")}\n`;
 
         // ultimo item
         if (i + 1 == meuCarrinho.length) {
@@ -533,7 +533,11 @@ cardapio.metodos = {
   },
 
   carregarBotaoLigar: () => {
-    $("#btnLigar").attr("href", `tel:${celularEmpresa}`);
+    var texto = "Olá! Gostaria de informações sobre os produtos ou serviços da marmifit.";
+    let encode = encodeURI(texto);
+    let URL = `https://wa.me/${celularEmpresa}?text=${encode}`;
+    $("#btnLigar").attr("href", URL);
+    $("#btnLigar").attr("target", "_blank");
   },
 
   mensagem: (texto, cor = "red", tempo = 3000) => {

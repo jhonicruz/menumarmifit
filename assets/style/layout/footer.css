@@ -7,6 +7,7 @@
   background-color: var(--color-secudary);
   margin-top: 10rem;
   height: auto;
+  padding: 3rem 1rem;
 }
 
 .footer p {
@@ -19,7 +20,7 @@
 }
 
 .footer__logo img {
-  width: 150px;
+  width: 100px !important;
   display: block;
   object-fit: cover;
 }
@@ -80,7 +81,7 @@
 @media (max-width: 600px) {
   .footer {
     gap: 1rem;
-    padding-bottom: 4rem !important;
+    padding: 2rem 4rem !important;
   }
 
   .copy p:first-child {

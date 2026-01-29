@@ -174,70 +174,8 @@
     padding: 1rem;
   }
 
-  .etapas {
-    padding: initial;
-  }
-
-  .etapas-numeros {
-    width: 13.4rem;
-  }
-
-  .etapa {
-    width: 26px;
-    height: 26px;
-  }
-
-  .line.checked {
-    width: 3.2rem;
-    height: 2px;
-  }
-
-  .line1 {
-    left: 26px;
-  }
-  .line2 {
-    left: 78px;
-  }
-
-  .titulo-carrinho {
-    padding: initial;
-  }
-
   .products-container {
     height: 100%;
     padding: 1rem 0;
-  }
-
-  .produto-image {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.4rem;
-  }
-
-  .produto-image img {
-    width: 80px;
-  }
-
-  .produto-preco h3 {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100px;
-    font-size: clamp(1.8rem, 1rem + 1vw, 2.2rem);
-  }
-  .produto-preco {
-    gap: 0.4rem;
-  }
-
-  .add-to-cart.add-to-cart-modal {
-    gap: 1.4rem;
-    justify-content: flex-end;
-  }
-
-  .total-infos {
-    gap: 1rem;
-  }
-  .total-infos .total-preco {
-    margin: 0;
   }
 }

@@ -2,7 +2,7 @@
 
 .add-to-cart {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   height: 35px;
@@ -78,8 +78,16 @@
 .add-to-cart.add-to-cart-modal {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .add-to-cart.add-to-cart-modal .btn-add {
   background-color: #e74c3c;
+}
+
+@media (max-width: 466px) {
+  .add-to-cart.add-to-cart-modal {
+    gap: 1.4rem;
+    justify-content: flex-end;
+  }
 }

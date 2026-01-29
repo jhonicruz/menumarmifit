@@ -17,14 +17,13 @@
 
 .etapas-numeros {
   display: flex;
-
   position: relative;
-
   width: max-content;
   justify-content: space-between;
   align-items: center;
   width: 16.8rem;
   position: relative;
+  color: var(--color-black-heavy);
 }
 
 .etapa {
@@ -76,4 +75,31 @@
 .line2.checked {
   width: 30px;
   background-color: var(--color-primary);
+}
+
+@media (max-width: 466px) {
+  .etapas {
+    padding: initial;
+  }
+
+  .etapas-numeros {
+    width: 13.4rem;
+  }
+
+  .etapa {
+    width: 26px;
+    height: 26px;
+  }
+
+  .line.checked {
+    width: 3.2rem;
+    height: 2px;
+  }
+
+  .line1 {
+    left: 26px;
+  }
+  .line2 {
+    left: 78px;
+  }
 }

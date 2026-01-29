@@ -26,13 +26,21 @@
   color: var(--color-black);
 }
 
+.cards__item:hover .cards__item__content .cards__item__content__text p {
+  color: var(--color-black-heavy);
+}
+
+/* .cards__item:hover .cards__item__content__text * {
+  color: var(--color-white);
+} */
+
 .cards__item:hover .cards__item__content .add-to-cart .btn-add-box .btn-add a {
   color: var(--color-white) !important;
 }
 
 .cards__item:hover .cards__item__content .cards__item__content__text .obs {
-  background-color: rgba(255, 193, 7, 0.15);
-  color: #666;
+  background-color: #361c06;
+  color: var(--color-white);
 }
 
 /* ============================= */
