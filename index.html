@@ -467,7 +467,8 @@
                 <a href="#">Continuar</a>
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-enviar">
-                <a href="" id="enviarPedido" target="_blank">Enviar</a>
+                <a href="javascript:void(0);" id="enviarPedido"
+                  onclick="cardapio.metodos.finalizarEnvio(); return false;">Enviar</a>
               </button>
 
 
@@ -480,6 +481,28 @@
 
   </section>
 
+  <!-- Modal de Sucesso do Pedido -->
+  <div class="modal-sucesso hidden" id="modal-sucesso">
+    <div class="modal-sucesso__content">
+      <div class="modal-sucesso__icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 class="modal-sucesso__title">Pedido Confirmado! 🎉</h2>
+      <p class="modal-sucesso__text">Encaminharemos o seu pedido para o WhatsApp em:</p>
+      <div class="modal-sucesso__timer">
+        <span id="timer-contador">3</span>
+        <span class="timer-label">segundos</span>
+      </div>
+      <div class="modal-sucesso__buttons">
+        <button class="btn-primary btn-primary--yellow" onclick="cardapio.metodos.irParaWhatsapp()">
+          Ir para WhatsApp agora
+        </button>
+        <button class="btn-primary" onclick="cardapio.metodos.fecharModalSucesso()">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer" id="footer">
     <div class="footer__logo">

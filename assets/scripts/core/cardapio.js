@@ -534,6 +534,119 @@ cardapio.metodos = {
     }
   },
 
+  finalizarEnvio: () => {
+    // Mostrar modal de sucesso com timer
+    cardapio.metodos.mostrarModalSucesso();
+  },
+
+  mostrarModalSucesso: () => {
+    const modal = $("#modal-sucesso");
+    const timerElement = $("#timer-contador");
+    let tempoRestante = 3;
+
+    // Mostrar modal
+    modal.removeClass("hidden");
+    timerElement.text(tempoRestante);
+
+    // Timer que decrementa
+    const interval = setInterval(() => {
+      tempoRestante--;
+      timerElement.text(tempoRestante);
+
+      if (tempoRestante <= 0) {
+        clearInterval(interval);
+        // Chamar função para ir para WhatsApp após o timer acabar
+        cardapio.metodos.irParaWhatsapp();
+      }
+    }, 1000);
+
+    // Armazenar o interval no modal para poder limpar se necessário
+    modal.data("timer-interval", interval);
+  },
+
+  irParaWhatsapp: () => {
+    // Limpar o timer se ainda estiver rodando
+    const modal = $("#modal-sucesso");
+    const interval = modal.data("timer-interval");
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    // Obter a URL do link enviarPedido que já foi preparada
+    const linkWhatsapp = $("#enviarPedido").attr("href");
+
+    // Limpar carrinho
+    meuCarrinho = [];
+    meuEndereco = null;
+    valorCarrinho = 0;
+
+    // Limpar localStorage
+    localStorage.removeItem("meuCarrinho");
+    localStorage.removeItem("meuEndereco");
+    localStorage.removeItem("valorCarrinho");
+
+    // Limpar campos do formulário
+    $("#cep").val("");
+    $("#endereco").val("");
+    $("#bairro").val("");
+    $("#cidade").val("");
+    $("#uf").val("");
+    $("#numero").val("");
+    $("#complemento").val("");
+
+    // Atualizar badge
+    cardapio.metodos.atualizarBadgeTotal();
+
+    // Fechar modal
+    cardapio.metodos.fecharModalSucesso();
+
+    // Abrir WhatsApp após pequeno delay
+    setTimeout(() => {
+      window.open(linkWhatsapp, "_blank");
+    }, 300);
+  },
+
+  fecharModalSucesso: () => {
+    const modal = $("#modal-sucesso");
+    const interval = modal.data("timer-interval");
+
+    // Limpar timer se ainda estiver rodando
+    if (interval) {
+      clearInterval(interval);
+    }
+
+    // Limpar carrinho
+    meuCarrinho = [];
+    meuEndereco = null;
+    valorCarrinho = 0;
+
+    // Limpar localStorage
+    localStorage.removeItem("meuCarrinho");
+    localStorage.removeItem("meuEndereco");
+    localStorage.removeItem("valorCarrinho");
+
+    // Limpar campos do formulário
+    $("#cep").val("");
+    $("#endereco").val("");
+    $("#bairro").val("");
+    $("#cidade").val("");
+    $("#uf").val("");
+    $("#numero").val("");
+    $("#complemento").val("");
+
+    // Atualizar badge
+    cardapio.metodos.atualizarBadgeTotal();
+
+    // Fechar modal
+    modal.addClass("hidden");
+
+    // Fechar modal do carrinho também
+    cardapio.metodos.abrirCarrinho(false);
+
+    // Mostrar mensagem
+    cardapio.metodos.mensagem("Pedido cancelado. Seu carrinho foi limpo.", "info", 3000);
+  },
+
   carregarBotaoReserva: () => {
     var texto = "Olá, gostaria de fazer uma *Reserva*";
     let encode = encodeURI(texto);

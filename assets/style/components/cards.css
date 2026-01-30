@@ -13,7 +13,9 @@
 
 /* hover effects */
 .cards__item:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .cards__item:hover .add-to-cart {
@@ -23,11 +25,11 @@
 }
 
 .cards__item:hover .cards__item__content span {
-  color: var(--color-black);
+  color: var(--color-black) !important;
 }
 
 .cards__item:hover .cards__item__content .cards__item__content__text p {
-  color: var(--color-black-heavy);
+  color: var(--color-black-heavy) !important;
 }
 
 /* .cards__item:hover .cards__item__content__text * {
@@ -39,8 +41,8 @@
 }
 
 .cards__item:hover .cards__item__content .cards__item__content__text .obs {
-  background-color: #361c06;
-  color: var(--color-white);
+  background-color: #361c06 !important;
+  color: var(--color-white) !important;
 }
 
 /* ============================= */
@@ -58,7 +60,8 @@
   text-align: center;
   word-wrap: break-word;
   overflow: hidden;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
 
   gap: 8px;
 
