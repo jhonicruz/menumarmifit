@@ -431,4 +431,16 @@ var MENU = {
       price: 10.0,
     },
   ],
+  kitDetox: [
+    {
+      id: "kit-detox-marmifit",
+      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      name: "Kit Detox",
+      dsc: "Plano detox completo com 30 refeições: 5 almoços (300g), 10 sucos detox (300ml), 5 caldinhos (250ml), 5 crepiocas de frango (80g) e 5 pacotes de chá desincha. Ideal para 5 dias com 6 refeições diárias e intervalo de 3h entre elas.",
+      peso: "Variado",
+      kcal: "850.00/dia",
+      obs: ["Contém lactose em alguns itens", "Contém glúten em alguns itens"],
+      price: 299.9,
+    },
+  ],
 };
