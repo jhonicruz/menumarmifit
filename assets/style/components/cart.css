@@ -33,14 +33,13 @@
 }
 
 .cart__product__price h3 {
-  font-size: 2rem;
   font-family: "poppinsmedium";
   color: rgb(68, 68, 68);
   font-size: clamp(1.2rem, 1vw + 1rem, 2rem);
+  height: 20px;
 }
 
 .cart__product__price span {
-  font-size: 2.4rem;
   font-size: clamp(1.6rem, 1vw + 1rem, 2.4rem);
   color: var(--color-primary);
   font-family: "poppinsbold", sans-serif;
@@ -75,7 +74,6 @@
 }
 
 .valor-entrega span {
-  color: var(--color-separate);
   font-size: 1.9rem;
   font-weight: 400;
   line-height: 1.5;
@@ -114,6 +112,17 @@
   gap: 2rem;
 }
 
+/* RESUME */
+
+.cart__product .cart__product__image img {
+  width: 80px;
+}
+.cart__product .cart__product__quantity {
+  font-size: 1.8rem;
+  color: var(--color-black);
+  font-weight: bold;
+}
+
 @media (max-width: 466px) {
   .cart-title {
     padding: initial;
@@ -132,8 +141,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 100px;
-    font-size: clamp(1.8rem, 1rem + 1vw, 2.2rem);
+    width: 120px;
+    font-size: clamp(1.4rem, 1rem + 1vw, 2.2rem);
   }
   .cart__product__price {
     gap: 0.4rem;

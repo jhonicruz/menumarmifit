@@ -4,6 +4,7 @@
   padding: 4rem 0;
   flex-wrap: wrap;
   align-items: center;
+  margin: 8rem 0;
 }
 
 .container.container--banner {
@@ -146,5 +147,9 @@
   }
   .banner__content {
     flex: 0 1 100%;
+  }
+
+  .banner {
+    margin: 2rem 0;
   }
 }

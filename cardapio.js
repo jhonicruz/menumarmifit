@@ -627,19 +627,18 @@ cardapio.templates = {
                     </div>`,
 
   itemResumo: `
-  <div class="cart__product produto-resumo">
-    
-    <div class="produto-image produto-image--resumo">
+  <div class="cart__product ">
+    <div class="cart__product__image ">
       <img src="\${img}" alt="">
 
-      <div class=" produto-preco">
+      <div class="cart__product__price ">
         <h3>\${name}</h3>
         <span>\${price}</span>
       </div>
 
     </div>
 
-    <div class="produto-quantidade">
+    <div class="cart__product__quantity ">
       <span>X \${qntd}</span>
     </div>
   </div>

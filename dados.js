@@ -12,7 +12,7 @@ var MENU = {
     },
     {
       id: "frango-parmegiana",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/aves/aves-a-parmegiana.jpg",
       name: "À Parmegiana",
       dsc: "Filé de Frango com arroz integral, molho de tomate artesanal, mussarela, repolho e cenoura refogada",
       peso: "350g",
@@ -32,7 +32,7 @@ var MENU = {
     },
     {
       id: "estrogonoffe-frango",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/aves/aves-estrogonoffe.jpg",
       name: "Estrogonoffe",
       dsc: "Frango em cubos com ketchup, mostarda, creme de leite, arroz integral, abobrinha e cenoura",
       peso: "350g",
@@ -146,7 +146,7 @@ var MENU = {
   peixes: [
     {
       id: "file-peixe",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/peixes/peixes-file-de-peixe.jpg",
       name: "Filé de Peixe",
       dsc: "Filé de peixe com arroz de brócolis, beterraba e cenoura",
       peso: "350g",

@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-
   align-items: center;
   background-color: var(--color-secudary);
   margin-top: 10rem;
   height: auto;
   padding: 3rem 1rem;
+  text-align: center;
 }
 
 .footer p {
