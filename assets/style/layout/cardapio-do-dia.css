@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  padding: 0 2rem;
 }
 
 /* Loading State */
@@ -64,96 +65,33 @@
   display: none;
 }
 
-/* Grid de Pratos */
+/* Grid de Pratos (reutilizando .cards) */
+/* Sem sobrescrita - usa grid padrão do .cards */
+
+/* Responsividade específica para o grid em dispositivos pequenos */
 .cardapio-do-dia__pratos {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-/* Card do Prato */
-.prato-card {
-  background: var(--color-white);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.prato-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(255, 152, 0, 0.2);
-}
-
-.prato-card__image {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background-color: #f5f5f5;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem;
 }
 
-.prato-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+@media (max-width: 1200px) {
+  .cardapio-do-dia__pratos {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
 
-.prato-card__image img.loaded {
-  animation: fadeIn 0.5s ease-in;
+@media (max-width: 800px) {
+  .cardapio-do-dia__pratos {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
-.prato-card:hover .prato-card__image img {
-  transform: scale(1.1);
-}
-
-.prato-card__badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.prato-card__content {
-  padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.prato-card__name {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--color-black);
-  line-height: 1.3;
-}
-
-.prato-card__descricao {
-  font-size: 1.4rem;
-  color: var(--color-gray);
-  line-height: 1.4;
-  flex: 1;
-}
-
-.prato-card__preco {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
+@media (max-width: 480px) {
+  .cardapio-do-dia__pratos {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Error State */
@@ -168,13 +106,6 @@
 }
 
 /* Responsivo */
-@media (max-width: 1200px) {
-  .cardapio-do-dia__pratos {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-}
-
 @media (max-width: 768px) {
   .cardapio-do-dia {
     padding: 3rem 0;
@@ -183,56 +114,10 @@
   .container--cardapio-do-dia {
     gap: 2rem;
   }
-
-  .cardapio-do-dia__pratos {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .prato-card__image {
-    height: 180px;
-  }
-
-  .prato-card__name {
-    font-size: 1.6rem;
-  }
-
-  .prato-card__descricao {
-    font-size: 1.3rem;
-  }
-
-  .prato-card__preco {
-    font-size: 1.8rem;
-  }
 }
 
 @media (max-width: 500px) {
   .cardapio-do-dia {
     padding: 2rem 0;
-  }
-
-  .cardapio-do-dia__pratos {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .prato-card__content {
-    padding: 1rem;
-  }
-
-  .prato-card__image {
-    height: 220px;
-  }
-
-  .prato-card__name {
-    font-size: 1.5rem;
-  }
-
-  .prato-card__descricao {
-    font-size: 1.2rem;
-  }
-
-  .prato-card__preco {
-    font-size: 1.6rem;
   }
 }

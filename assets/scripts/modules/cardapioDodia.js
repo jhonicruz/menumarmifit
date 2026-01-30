@@ -35,67 +35,60 @@ export default function initCardapioDodia() {
    * Formata valor monetário para Real
    */
   function formatarPreco(valor) {
-    const num = parseFloat(valor);
+    const num = parseFloat(valor.toString().replace(",", "."));
     return `R$ ${num.toFixed(2).replace(".", ",")}`;
+  }
+
+  /**
+   * Gera um id baseado no nome
+   */
+  function gerarId(nome, index) {
+    const base = (nome || "prato")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[^\p{L}\p{N}]+/gu, "-")
+      .replace(/(^-|-$)+/g, "");
+
+    return `${base || "prato"}-${index}`;
   }
 
   /**
    * Cria elemento HTML do prato
    */
   function criarCardPrato(prato, index) {
-    const { nome, descricao, preco, imagem } = prato;
+    const { nome, descricao, preco, imagem, peso, kcal, obs, id: existingId } = prato;
 
     // Gerar ID único para o prato do dia
-    const id = `prato-dia-${index}`;
+    const id = existingId || gerarId(nome, index);
 
     // Limpar URL da imagem
     let imagemUrl = (imagem || "").trim();
 
     // Validar se é uma URL válida
     if (imagemUrl && !imagemUrl.match(/^https?:\/\//i)) {
-      imagemUrl = ""; // URL inválida, usar placeholder
+      imagemUrl = "";
     }
 
-    const placeholderUrl = `https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=300&fit=crop`;
+    const placeholderUrl = "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=300&fit=crop";
     const finalImageUrl = imagemUrl || placeholderUrl;
 
-    return `
-      <div class="prato-card">
-        <div class="prato-card__image">
-          <img 
-            src="${finalImageUrl}" 
-            alt="${nome}"
-            class="prato-img"
-            data-index="${index}"
-            onload="this.classList.add('loaded')"
-            onerror="this.src='${placeholderUrl}'; this.classList.add('loaded');"
-          />
-          <span class="prato-card__badge">${index + 1}</span>
-        </div>
-        <div class="prato-card__content">
-          <h3 class="prato-card__name">${nome}</h3>
-          <p class="prato-card__descricao">${descricao || "Prato do dia"}</p>
-          <p class="prato-card__preco">${formatarPreco(preco)}</p>
-          
-          <div class="add-to-cart">
-            <div class="add-to-cart__buttons">
-              <span class="add-menos" onclick="cardapioDodia.diminuirQuantidade('${id}')">
-                <i class="fas fa-minus"></i>
-              </span>
-              <span class="add-numero-items" id="qntd-${id}">0</span>
-              <span class="add-mais" onclick="cardapioDodia.aumentarQuantidade('${id}')">
-                <i class="fas fa-plus"></i>
-              </span>
-            </div>
-            <div class="btn-add-box">
-              <span class="btn-add" onclick="cardapioDodia.adicionarAoCarrinho('${id}', '${nome}', '${preco}', '${finalImageUrl}')">
-                <a><i class="fa fa-shopping-bag"></i></a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+    const price = formatarPreco(preco);
+    const obsFormatada = Array.isArray(obs) ? obs.join(", ") : "";
+
+    if (typeof cardapio !== "undefined" && cardapio.templates && cardapio.templates.item) {
+      return cardapio.templates.item
+        .replace(/cardapio\.metodos\./g, "cardapioDodia.")
+        .replace(/\${img}/g, finalImageUrl)
+        .replace(/\${name}/g, nome)
+        .replace(/\${dsc}/g, descricao || "Prato do dia")
+        .replace(/\${price}/g, price)
+        .replace(/\${obs}/g, obsFormatada)
+        .replace(/\${peso}/g, peso || "")
+        .replace(/\${kcal}/g, kcal || "")
+        .replace(/\${id}/g, id);
+    }
+
+    return "";
   }
 
   /**
@@ -111,6 +104,13 @@ export default function initCardapioDodia() {
         descricao: (item.descricao || "").trim(),
         preco: (item.preco || "0").toString().trim(),
         imagem: (item.imagem || "").trim(),
+        peso: (item.peso || "").trim(),
+        kcal: (item.kcal || "").trim(),
+        obs: (item.obs || "")
+          .toString()
+          .split(",")
+          .map((o) => o.trim())
+          .filter(Boolean),
       }));
   }
 
@@ -142,6 +142,9 @@ export default function initCardapioDodia() {
       const nomeIdx = headers.indexOf("nome");
       const descricaoIdx = headers.indexOf("descricao");
       const precoIdx = headers.indexOf("preco");
+      const pesoIdx = headers.indexOf("peso");
+      const kcalIdx = headers.indexOf("kcal");
+      const obsIdx = headers.indexOf("obs");
       const imagemIdx = headers.indexOf("imagem");
 
       if (nomeIdx === -1 || precoIdx === -1) {
@@ -181,6 +184,9 @@ export default function initCardapioDodia() {
           nome: (valores[nomeIdx] || "").trim(),
           descricao: descricaoIdx >= 0 ? (valores[descricaoIdx] || "").trim() : "",
           preco: (valores[precoIdx] || "0").trim(),
+          peso: pesoIdx >= 0 ? (valores[pesoIdx] || "").trim() : "",
+          kcal: kcalIdx >= 0 ? (valores[kcalIdx] || "").trim() : "",
+          obs: obsIdx >= 0 ? (valores[obsIdx] || "").trim() : "",
           imagem: imagem,
         });
       }
@@ -192,7 +198,16 @@ export default function initCardapioDodia() {
         return;
       }
 
-      exibirPratos(pratosFormatados);
+      const pratosComId = pratosFormatados.map((item, index) => ({
+        ...item,
+        id: gerarId(item.nome, index),
+      }));
+
+      if (typeof cardapioDodia !== "undefined" && cardapioDodia.setItens) {
+        cardapioDodia.setItens(pratosComId);
+      }
+
+      exibirPratos(pratosComId);
     } catch (erro) {
       console.error("Erro ao carregar cardápio:", erro);
       exibirErro("Erro ao carregar o cardápio do dia. Verifique a conexão.");

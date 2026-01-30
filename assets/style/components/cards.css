@@ -77,6 +77,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .cards__item__content {
@@ -91,12 +93,16 @@
   overflow-x: hidden;
   width: 100%;
   flex: 1;
+  transition: transform 0.3s ease;
 }
 
 .cards__item__content__text {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.cards__item:hover .cards__item__image img {
+  transform: scale(1.1);
 }
 
 .cards__item__content .cards__item__content__text h3 {

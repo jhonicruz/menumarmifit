@@ -4,6 +4,15 @@
  */
 
 const cardapioDodia = {
+  itens: {},
+
+  setItens(itens = []) {
+    this.itens = itens.reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
+  },
+
   aumentarQuantidade(id) {
     const element = document.getElementById(`qntd-${id}`);
     if (!element) return;
@@ -20,37 +29,41 @@ const cardapioDodia = {
     }
   },
 
-  adicionarAoCarrinho(id, nome, preco, imagem) {
+  adicionarAoCarrinho(id) {
     const qntdElement = document.getElementById(`qntd-${id}`);
     if (!qntdElement) return;
 
     const qntd = parseInt(qntdElement.textContent) || 0;
 
     if (qntd <= 0) {
-      // Mostrar mensagem
       if (typeof cardapio !== "undefined" && cardapio.metodos) {
         cardapio.metodos.mensagem("Selecione uma quantidade", "red");
       }
       return;
     }
 
-    // Converter preço string para número
-    const precoNum = parseFloat(preco.replace(",", "."));
+    const itemBase = this.itens[id];
+    if (!itemBase) {
+      if (typeof cardapio !== "undefined" && cardapio.metodos) {
+        cardapio.metodos.mensagem("Item não encontrado", "red");
+      }
+      return;
+    }
 
-    // Criar objeto do item compatível com o carrinho
+    const precoNum = parseFloat(itemBase.preco?.toString().replace(",", ".")) || 0;
+
     const item = {
-      id: id,
-      name: nome,
+      id: itemBase.id,
+      name: itemBase.nome,
       price: precoNum,
-      img: imagem,
+      img: itemBase.imagem,
       qntd: qntd,
-      dsc: "",
-      obs: [],
-      peso: "350g",
-      kcal: "~350",
+      dsc: itemBase.descricao || "",
+      obs: itemBase.obs || [],
+      peso: itemBase.peso || "",
+      kcal: itemBase.kcal || "",
     };
 
-    // Adicionar ao carrinho (usar a função global)
     if (typeof meuCarrinho !== "undefined") {
       let existe = meuCarrinho.find((elem) => elem.id === id);
 
@@ -60,10 +73,8 @@ const cardapioDodia = {
         meuCarrinho.push(item);
       }
 
-      // Limpar quantidade
       qntdElement.textContent = "0";
 
-      // Exibir mensagem e atualizar badge
       if (typeof cardapio !== "undefined" && cardapio.metodos) {
         cardapio.metodos.mensagem("Item adicionado ao carrinho", "green");
         cardapio.metodos.atualizarBadgeTotal();

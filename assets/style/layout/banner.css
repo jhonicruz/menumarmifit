@@ -61,6 +61,7 @@
   height: 450px;
   background-color: var(--color-primary);
   border-radius: 170px;
+  max-width: 100%;
 }
 
 .banner__images img {
@@ -68,6 +69,7 @@
   left: -20px;
   z-index: 1;
   width: 470px;
+  max-width: 100%;
 }
 
 .banner__images .depoimento {
@@ -83,6 +85,7 @@
   z-index: 2;
   background-color: var(--color-white);
   line-height: 1.4;
+  max-width: calc(100vw - 50px);
 }
 
 .banner__images .depoimento span {
@@ -122,9 +125,10 @@
 @media (max-width: 936px) {
   .banner {
     height: auto;
+    margin: 3rem 0;
   }
   .banner__content {
-    flex: 0 1 80%;
+    flex: 0 1 100%;
   }
 
   .banner__images {
