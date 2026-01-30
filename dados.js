@@ -38,7 +38,7 @@ var MENU = {
       peso: "350g",
       kcal: "378.47",
       obs: ["Contém lactose", "Sem glúten"],
-      price: 22.99,
+      price: 24.99,
     },
     {
       id: "panqueca-frango",
