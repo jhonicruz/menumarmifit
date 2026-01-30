@@ -1,4 +1,4 @@
-var MENU = {
+const MENU = {
   aves: [
     {
       id: "baiao-de-3-frango-grelhado",
