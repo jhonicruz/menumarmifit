@@ -1,15 +1,15 @@
-import TESTIMONIALS from '../api/testimonials.js';
+import TESTIMONIALS from "../api/testimonials.js";
 
 export default function initDepoimentos() {
-  const carrosselContainer = document.querySelector('.depoimentos__content');
-  
+  const carrosselContainer = document.querySelector(".depoimentos__content");
+
   if (!carrosselContainer) return;
 
   // Função para gerar estrelas baseado na nota
   function gerarEstrelas(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    let starsHTML = '';
+    let starsHTML = "";
 
     // Estrelas cheias
     for (let i = 0; i < fullStars; i++) {
@@ -34,8 +34,9 @@ export default function initDepoimentos() {
   const carrosselHTML = `
     <div class="depoimentos-carrossel">
       <div class="depoimentos-slides">
-        ${TESTIMONIALS.map((testimonial, index) => `
-          <div class="depoimentos__content__feedback ${index === 0 ? 'active' : ''}" data-slide="${index}">
+        ${TESTIMONIALS.map(
+          (testimonial, index) => `
+          <div class="depoimentos__content__feedback ${index === 0 ? "active" : ""}" data-slide="${index}">
             <div class="depoimentos__content__feedback__client">
               <div class="depoimentos__content__feedback__client__image">
                 <img src="${testimonial.image}" alt="${testimonial.name}" />
@@ -54,39 +55,42 @@ export default function initDepoimentos() {
               <span id="right"><i class="fa-solid fa-quote-right"></i></span>
             </div>
           </div>
-        `).join('')}
+        `,
+        ).join("")}
       </div>
       
       <div class="depoimentos__content__pages">
-        ${TESTIMONIALS.map((_, index) => `
-          <button class="shadow-8dp ${index === 0 ? 'ativo' : ''}" data-dot="${index}">
+        ${TESTIMONIALS.map(
+          (_, index) => `
+          <button class="shadow-8dp ${index === 0 ? "ativo" : ""}" data-dot="${index}">
             <span></span>
           </button>
-        `).join('')}
+        `,
+        ).join("")}
       </div>
     </div>
   `;
 
   // Inserir no container (após o título)
-  const title = carrosselContainer.querySelector('.depoimentos__content__title');
-  title.insertAdjacentHTML('afterend', carrosselHTML);
+  const title = carrosselContainer.querySelector(".depoimentos__content__title");
+  title.insertAdjacentHTML("afterend", carrosselHTML);
 
   // Variáveis do carrossel
   let currentSlide = 0;
   let autoPlayInterval;
-  const slides = document.querySelectorAll('.depoimentos__content__feedback');
-  const dots = document.querySelectorAll('[data-dot]');
+  const slides = document.querySelectorAll(".depoimentos__content__feedback");
+  const dots = document.querySelectorAll("[data-dot]");
   const AUTOPLAY_DELAY = 5000; // 5 segundos
 
   // Função para mostrar slide
   function showSlide(index) {
     // Remover classe active de todos
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('ativo'));
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("ativo"));
 
     // Adicionar classe active no atual
-    slides[index].classList.add('active');
-    dots[index].classList.add('ativo');
+    slides[index].classList.add("active");
+    dots[index].classList.add("ativo");
 
     currentSlide = index;
   }
@@ -120,7 +124,7 @@ export default function initDepoimentos() {
 
   // Event listeners para os dots
   dots.forEach((dot, index) => {
-    dot.addEventListener('click', (e) => {
+    dot.addEventListener("click", (e) => {
       e.preventDefault();
       showSlide(index);
       startAutoPlay(); // Reiniciar autoplay após clique (já limpa o anterior internamente)
@@ -128,10 +132,10 @@ export default function initDepoimentos() {
   });
 
   // Pausar ao passar o mouse
-  const carrossel = document.querySelector('.depoimentos-carrossel');
+  const carrossel = document.querySelector(".depoimentos-carrossel");
   if (carrossel) {
-    carrossel.addEventListener('mouseenter', stopAutoPlay);
-    carrossel.addEventListener('mouseleave', startAutoPlay);
+    carrossel.addEventListener("mouseenter", stopAutoPlay);
+    carrossel.addEventListener("mouseleave", startAutoPlay);
   }
 
   // Iniciar o autoplay

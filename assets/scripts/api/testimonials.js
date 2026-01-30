@@ -73,4 +73,4 @@ const TESTIMONIALS = [
   },
 ];
 
-export default TE
+export default TESTIMONIALS;
