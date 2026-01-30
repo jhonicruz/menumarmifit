@@ -55,6 +55,40 @@
   gap: 0.4rem;
 }
 
+/* CEP Loader */
+.cep-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.cep-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+}
+
+.cep-loader.hidden {
+  display: none;
+}
+
+.spinner-mini {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 152, 0, 0.2);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin-mini 0.8s linear infinite;
+}
+
+@keyframes spin-mini {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 400px) {
   .resumo-endereco {
     width: 100%;

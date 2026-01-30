@@ -389,7 +389,13 @@ cardapio.metodos = {
       var validarCep = /^[0-9]{8}$/;
 
       if (validarCep.test(cep)) {
+        // Mostrar loader
+        $("#cep-loader").removeClass("hidden");
+
         $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+          // Ocultar loader
+          $("#cep-loader").addClass("hidden");
+
           if (!("erro" in dados)) {
             // Atualiza os campos com os valores retornados
 
@@ -402,6 +408,10 @@ cardapio.metodos = {
             cardapio.metodos.mensagem("CEP Não Encontrado. Preencha as informações manualmente.");
             $("#endereco").focus();
           }
+        }).fail(function () {
+          // Ocultar loader em caso de erro
+          $("#cep-loader").addClass("hidden");
+          cardapio.metodos.mensagem("Erro ao buscar CEP. Tente novamente.", "red");
         });
       } else {
         cardapio.metodos.mensagem("Formato do CEP inválido.");
