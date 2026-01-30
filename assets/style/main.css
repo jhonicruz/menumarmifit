@@ -19,6 +19,7 @@
 @import "./components/kit-detox.css";
 @import "./layout/header.css";
 @import "./layout/banner.css";
+@import "./layout/cardapio-do-dia.css";
 @import "./layout/servicos.css";
 @import "./layout/cardapio.css";
 @import "./layout/depoimentos.css";

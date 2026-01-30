@@ -105,6 +105,29 @@
     </div>
   </section>
 
+  <!-- Seção de Cardápio do Dia -->
+  <section class="cardapio-do-dia" id="cardapio-do-dia">
+    <div class="container container--cardapio-do-dia">
+      <div class="section__title">
+        <h3 class="title--sections">Cardápio do Dia</h3>
+        <p class="subtitles--sections">Pratos feitos na loja física</p>
+      </div>
+
+      <div class="cardapio-do-dia__loading">
+        <div class="spinner"></div>
+        <p>Carregando cardápio...</p>
+      </div>
+
+      <div class="cardapio-do-dia__content hidden" data-cardapio-container>
+        <div class="cardapio-do-dia__pratos"></div>
+      </div>
+
+      <div class="cardapio-do-dia__error hidden" data-cardapio-error>
+        <p>Não foi possível carregar o cardápio do dia. Tente novamente mais tarde.</p>
+      </div>
+    </div>
+  </section>
+
   <main class="cardapio container container--cardapio" id="cardapio">
     <div class="section__title">
       <h3 class="title--sections">Cardápio</h3>
@@ -252,6 +275,9 @@
 
     </div>
   </section>
+
+
+  <!-- insira aqui a seção de obter localicação e mapa -->
 
   <span class="go-to-start shadow-12dp" data-gotostart><i class="fas fa-arrow-up"></i></span>
 
@@ -496,6 +522,7 @@
   <script src="./assets/scripts/jquery-1.12.4.min.js"></script>
   <script src="./assets/scripts/api/dados.js"></script>
   <script src="./assets/scripts/core/cardapio.js"></script>
+  <script src="./assets/scripts/core/cardapioDodia.js"></script>
 
 
   <script type="module" src="./assets/scripts/main.js"></script>
