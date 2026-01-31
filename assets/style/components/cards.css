@@ -1,9 +1,9 @@
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
   width: 100%;
   max-width: 1100px;
-  padding: 2rem 0;
+  padding: 2rem 2rem;
   gap: 2.4rem;
   justify-content: center;
   margin: 0 auto;
@@ -161,4 +161,31 @@
   transition:
     opacity 0.2s ease,
     visibility 0.2s ease;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+    padding: 2rem 1.6rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 2rem 1.6rem;
+    gap: 1.8rem;
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.6rem;
+    gap: 1.6rem;
+    max-width: 400px;
+  }
 }
