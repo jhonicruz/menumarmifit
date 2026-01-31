@@ -30,7 +30,7 @@ export default function initKitDetox() {
 
   const renderKitDetox = () => {
     console.log("renderKitDetox chamado!");
-    
+
     if (typeof MENU === "undefined" || !MENU.kitDetox || !MENU.kitDetox.length) {
       console.log("MENU.kitDetox não encontrado!");
       return;
