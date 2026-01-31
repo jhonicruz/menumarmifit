@@ -8,11 +8,11 @@ export default function initVerificarFuncionamento() {
   // 0 = domingo, 1 = segunda, ..., 6 = sábado
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 17], // segunda: 7h às 17h
-    2: [7, 17], // terça: 7h às 17h
-    3: [7, 17], // quarta: 7h às 17h
-    4: [7, 17], // quinta: 7h às 17h
-    5: [7, 17], // sexta: 7h às 17h
+    1: [7, 24], // segunda: 7h às 17h
+    2: [7, 24], // terça: 7h às 17h
+    3: [7, 24], // quarta: 7h às 17h
+    4: [7, 24], // quinta: 7h às 17h
+    5: [7, 24], // sexta: 7h às 17h
     6: [8, 14], // sábado: 8h às 14h
   };
 
@@ -47,11 +47,11 @@ export default function initVerificarFuncionamento() {
 
     const horariosPorDia = {
       0: null,
-      1: [7, 17],
-      2: [7, 17],
-      3: [7, 17],
-      4: [7, 17],
-      5: [7, 17],
+      1: [7, 24],
+      2: [7, 24],
+      3: [7, 24],
+      4: [7, 24],
+      5: [7, 24],
       6: [8, 14],
     };
 
@@ -145,6 +145,36 @@ export default function initVerificarFuncionamento() {
           if (textoSpan) textoSpan.innerText = "Fechado";
         }
       });
+    }
+
+    // Atualizar textos de horário dinamicamente
+    atualizarTextosHorario();
+  }
+
+  /**
+   * Atualiza os textos de horário no top bar e footer dinamicamente
+   */
+  function atualizarTextosHorario() {
+    // Top bar
+    const topBarHorarios = document.querySelector("[data-horarios-texto]");
+    if (topBarHorarios) {
+      const seg = horariosPorDia[1];
+      const sab = horariosPorDia[6];
+
+      if (seg && sab) {
+        topBarHorarios.textContent = `Seg-Sex ${seg[0]}h-${seg[1]}h | Sab ${sab[0]}h-${sab[1]}h`;
+      }
+    }
+
+    // Footer
+    const footerHorarios = document.querySelector("[data-horarios-texto-footer]");
+    if (footerHorarios) {
+      const seg = horariosPorDia[1];
+      const sab = horariosPorDia[6];
+
+      if (seg && sab) {
+        footerHorarios.textContent = `Seg-Sex ${seg[0]}h-${seg[1]}h | Sab ${sab[0]}h-${sab[1]}h`;
+      }
     }
   }
 
