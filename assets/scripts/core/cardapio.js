@@ -31,6 +31,15 @@ cardapio.metodos = {
   },
 
   obterItensCardapio: (categoria = "aves", vermais = false) => {
+    // Kit Detox tem renderização especial, delega para o módulo
+    if (categoria === "kitDetox") {
+      $(".categories ul li a").removeClass("ativo");
+      $("#menu-kitDetox").addClass("ativo");
+      // Dispara evento customizado para o módulo Kit Detox
+      window.dispatchEvent(new CustomEvent("renderKitDetox"));
+      return;
+    }
+
     var filtro = MENU[categoria];
 
     if (!vermais) {

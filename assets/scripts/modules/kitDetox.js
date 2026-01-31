@@ -29,9 +29,16 @@ export default function initKitDetox() {
   };
 
   const renderKitDetox = () => {
-    if (!window.MENU || !MENU.kitDetox || !MENU.kitDetox.length) {
+    console.log("renderKitDetox chamado!");
+    
+    if (typeof MENU === "undefined" || !MENU.kitDetox || !MENU.kitDetox.length) {
+      console.log("MENU.kitDetox não encontrado!");
       return;
     }
+
+    // Aplica a classe ANTES de renderizar
+    cardsContainer.classList.add("kit-detox-cards");
+    console.log("Classe kit-detox-cards aplicada!");
 
     const item = MENU.kitDetox[0];
     const price = item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -98,8 +105,15 @@ export default function initKitDetox() {
 
   const isKitDetoxActive = () => menuKitDetox.classList.contains("ativo");
 
-  menuKitDetox.addEventListener("click", () => {
+  // Escuta evento customizado disparado pelo cardapio.js
+  window.addEventListener("renderKitDetox", () => {
     requestAnimationFrame(renderKitDetox);
+  });
+
+  menuKitDetox.addEventListener("click", () => {
+    setTimeout(() => {
+      requestAnimationFrame(renderKitDetox);
+    }, 50);
   });
 
   if (verMaisButton) {
