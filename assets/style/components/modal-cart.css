@@ -166,18 +166,18 @@
   display: flex;
   align-items: center;
   height: auto;
-  height: auto;
+  padding: 1rem;
 }
 
 .grid-form {
   display: grid;
   grid-template-columns: 6fr 4fr 2fr;
 
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   height: auto;
   align-items: center;
-  padding: 2rem 0.8rem;
+  padding: 1rem;
 }
 
 .grid-form input,
@@ -192,7 +192,7 @@
 .cep-container {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 1rem;
 }
 
 .cep-container a {

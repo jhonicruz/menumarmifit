@@ -952,7 +952,7 @@ cardapio.templates = {
 
      <div class="btn-add-box">
        <span class="btn-add" onclick="cardapio.metodos.adicionarAoCarrinho('\${id}')"
-         ><a ><i class="fa fa-shopping-bag"></i></a
+        ><a ><i class="fa fa-shopping-bag"></i><span class="btn-add-text">Adicionar</span></a
        ></span>
      </div>
    </div>

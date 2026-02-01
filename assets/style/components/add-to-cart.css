@@ -2,10 +2,11 @@
 
 .add-to-cart {
   display: flex;
-  gap: 1rem;
+  gap: 1.6rem;
   justify-content: center;
   align-items: center;
-  height: 35px;
+  height: 80px;
+  flex-direction: column;
   /* opacity: 0; */
   /* visibility: hidden; */
   transition:
@@ -13,19 +14,19 @@
     visibility 0.2s ease;
   border-radius: 15px;
   width: 200px;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .add-to-cart .add-to-cart__buttons {
   display: flex;
   justify-content: center;
-
   height: 100%;
   align-items: center;
 }
 
 .add-to-cart .add-to-cart__buttons span {
   font-size: 14px;
-
   height: 100%;
   display: flex;
   align-items: center;
@@ -42,7 +43,7 @@
 
 .add-to-cart__buttons span.add-menos,
 .add-to-cart__buttons span.add-mais {
-  padding: 2px 7px;
+  padding: 4px 14px;
   cursor: pointer;
 }
 
@@ -59,38 +60,52 @@
 
 .btn-add-box {
   height: 100%;
+  width: 100%;
 }
 
 .btn-add-box .btn-add {
-  width: 40px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   background-color: var(--color-black);
   font-size: 16px;
-  padding: 4px 10px;
+  padding: 8px 16px;
   border-radius: 10px;
   color: var(--color-white) !important;
   cursor: pointer;
 }
 
+.btn-add-box .btn-add a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+}
+
+.btn-add-box .btn-add-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .add-to-cart.add-to-cart-modal {
-  display: flex;
+  flex-direction: row;
+  height: 40px;
+  gap: 1.4rem;
   justify-content: flex-end;
-  gap: 0.5rem;
 }
 
 .add-to-cart.add-to-cart-modal .btn-add {
   background-color: #e74c3c;
 }
 
-@media (max-width: 466px) {
-  .add-to-cart.add-to-cart-modal {
-    gap: 1.4rem;
-    justify-content: flex-end;
-  }
-}
+/* @media (max-width: 466px) {
+  
+
+
+} */
 
 /* Variante Kit Detox */
 .add-to-cart.kit-detox-variant {
