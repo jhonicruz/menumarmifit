@@ -73,7 +73,7 @@ export default function initCardapioDodia() {
     const finalImageUrl = imagemUrl || placeholderUrl;
 
     const price = formatarPreco(preco);
-    const obsFormatada = Array.isArray(obs) ? obs.join(", ") : "";
+    const obsFormatada = Array.isArray(obs) ? obs.map((tag) => `<span class="obs-tag">${tag}</span>`).join("") : "";
 
     if (typeof cardapio !== "undefined" && cardapio.templates && cardapio.templates.item) {
       return cardapio.templates.item

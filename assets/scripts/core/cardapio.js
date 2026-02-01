@@ -48,13 +48,19 @@ cardapio.metodos = {
 
     if (!vermais) {
       $("[data-cards]").html("");
-      $("#vermais").removeClass("hidden");
+
+      // Só mostra o botão "Ver mais" se a categoria tiver mais de 8 itens
+      if (filtro.length > 8) {
+        $("#vermais").removeClass("hidden");
+      } else {
+        $("#vermais").addClass("hidden");
+      }
     }
 
     $.each(filtro, (i, e) => {
       let price = e.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-      let obs = e.obs.join(", ");
+      let obs = e.obs.map((tag) => `<span class="obs-tag">${tag}</span>`).join("");
 
       let temp = cardapio.templates.item
         .replace(/\${img}/g, e.img)
@@ -929,7 +935,7 @@ cardapio.templates = {
      <h3>\${name}</h3>
      <p>\${dsc}</p>
      <span class="kcal-peso">\${kcal}kcal | \${peso}</span>
-     <span class="obs">\${obs}</span>
+     <div class="obs-container">\${obs}</div>
      
      
      <span>\${price}</span>
