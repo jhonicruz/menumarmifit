@@ -831,8 +831,8 @@ cardapio.metodos = {
     // Atualizar badge
     cardapio.metodos.atualizarBadgeTotal();
 
-    // Fechar modal
-    cardapio.metodos.fecharModalSucesso();
+    // Fechar modal sem exibir mensagem de cancelamento
+    cardapio.metodos.fecharModalSucesso(false);
 
     // Abrir WhatsApp após pequeno delay
     setTimeout(() => {
@@ -840,7 +840,7 @@ cardapio.metodos = {
     }, 300);
   },
 
-  fecharModalSucesso: () => {
+  fecharModalSucesso: (mostrarMensagemCancelamento = true) => {
     const modal = $("#modal-sucesso");
     const interval = modal.data("timer-interval");
 
@@ -883,8 +883,10 @@ cardapio.metodos = {
     // Fechar modal do carrinho também
     cardapio.metodos.abrirCarrinho(false);
 
-    // Mostrar mensagem
-    cardapio.metodos.mensagem("Pedido cancelado. Seu carrinho foi limpo.", "info", 3000);
+    // Mostrar mensagem apenas se o usuário realmente cancelou
+    if (mostrarMensagemCancelamento) {
+      cardapio.metodos.mensagem("Pedido cancelado. Seu carrinho foi limpo.", "info", 3000);
+    }
   },
 
   carregarBotaoReserva: () => {
