@@ -1,10 +1,26 @@
 .banner {
   display: flex;
   height: calc(100vh - 12rem);
-  padding: 4rem 0;
+  padding: 4rem 0 2rem;
   flex-wrap: wrap;
   align-items: center;
   margin: 8rem 0;
+  position: relative;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 500px;
+  width: 100%;
+  background-image: url("../../img/bg/bg-icons-1.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 .container.container--banner {
@@ -147,7 +163,7 @@
     align-items: flex-start;
   }
   .banner__content__social-icons {
-    justify-content: center;
+    display: none;
   }
   .banner__content {
     flex: 0 1 100%;

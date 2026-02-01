@@ -195,8 +195,35 @@
     </div>
   </section>
 
+  <!-- Seleção de Tipo de Cardápio -->
+  <section class="selecao-cardapio" id="selecao-cardapio">
+    <div class="container">
+      <div class="selecao-cards">
+        <!-- Card 1: Cardápio do Dia -->
+        <div class="selecao-card selecao-card--ativo" data-selecao="dia" onclick="window.toggleCardapio('dia')">
+          <div class="selecao-card__header">
+            <i class="fas fa-utensils"></i>
+            <h3>Cardápio do Dia</h3>
+          </div>
+          <p class="selecao-card__desc">🍽️ Pratos frescos feitos no restaurante</p>
+          <div class="selecao-card__footer">Coma no local</div>
+        </div>
+
+        <!-- Card 2: Marmitas Congeladas -->
+        <div class="selecao-card" data-selecao="congeladas" onclick="window.toggleCardapio('congeladas')">
+          <div class="selecao-card__header">
+            <i class="fas fa-snowflake"></i>
+            <h3>Marmitas Congeladas</h3>
+          </div>
+          <p class="selecao-card__desc">❄️ Pronta entrega para levar</p>
+          <div class="selecao-card__footer">Peça online</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Seção de Cardápio do Dia -->
-  <section class="cardapio-do-dia" id="cardapio-do-dia">
+  <section class="cardapio-do-dia" id="cardapio-do-dia" data-cardapio-tipo="dia">
     <div class="container container--cardapio-do-dia">
       <div class="section__title">
         <h3 class="title--sections"><i class="fas fa-utensils"></i> Cardápio do Dia</h3>
@@ -218,7 +245,7 @@
     </div>
   </section>
 
-  <main class="cardapio container container--cardapio" id="cardapio">
+  <main class="cardapio container container--cardapio" id="cardapio" data-cardapio-tipo="congeladas">
     <div class="section__title">
       <h3 class="title--sections"><i class="fas fa-snowflake"></i> Marmitas Congeladas</h3>
       <p class="subtitles--sections">❄️ Marmitas congeladas a pronta entrega - peça online</p>
