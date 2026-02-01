@@ -331,6 +331,8 @@
             <span class="shadow-8dp etapa etapa2">2</span>
             <span class="line line2 "></span>
             <span class="shadow-8dp etapa etapa3">3</span>
+            <span class="line line3 "></span>
+            <span class="shadow-8dp etapa etapa4">4</span>
           </div>
 
           <div class="botao-fechar">
@@ -366,8 +368,8 @@
             </label>
           </div>
           <div class="endereco control-form">
-            <label for="endereco">Endereço:
-              <input type="text" id="endereco" name="endereco" autofocus class="shadow-8dp">
+            <label for="endereco-entrega">Endereço:
+              <input type="text" id="endereco-entrega" name="endereco" autofocus class="shadow-8dp">
 
             </label>
 
@@ -434,6 +436,62 @@
 
       </div>
 
+      <div class="pagamento scrollContainer hidden" data-modal="pagamento">
+        <div class="pagamento__content">
+          <h4 class="pagamento__titulo">Forma de pagamento</h4>
+
+          <div class="pagamento__grupo">
+            <label class="pagamento__option">
+              <input type="radio" name="tipo-pagamento" value="online">
+              <span>Pagamento online</span>
+            </label>
+            <label class="pagamento__option">
+              <input type="radio" name="tipo-pagamento" value="entrega">
+              <span>Pagamento na entrega</span>
+            </label>
+          </div>
+
+          <div class="pagamento__subgrupo hidden" data-pagamento-online>
+            <p class="pagamento__subtitulo">Online</p>
+            <label class="pagamento__option">
+              <input type="radio" name="pagamento-online-opcao" value="pix">
+              <span>Pix</span>
+            </label>
+          </div>
+
+          <div class="pagamento__subgrupo hidden" data-pagamento-entrega>
+            <p class="pagamento__subtitulo">Na entrega</p>
+            <label class="pagamento__option">
+              <input type="radio" name="pagamento-entrega-opcao" value="cartao">
+              <span>Cartão</span>
+            </label>
+            <label class="pagamento__option">
+              <input type="radio" name="pagamento-entrega-opcao" value="dinheiro">
+              <span>Dinheiro</span>
+            </label>
+
+            <div class="pagamento__troco hidden" data-pagamento-troco>
+              <p class="pagamento__subtitulo">Precisa de troco?</p>
+              <div class="pagamento__grupo">
+                <label class="pagamento__option">
+                  <input type="radio" name="troco-opcao" value="nao" checked>
+                  <span>Não</span>
+                </label>
+                <label class="pagamento__option">
+                  <input type="radio" name="troco-opcao" value="sim">
+                  <span>Sim</span>
+                </label>
+              </div>
+
+              <div class="pagamento__troco-valor hidden" data-pagamento-troco-valor>
+                <label class="pagamento__label" for="troco-para">Troco para quanto?</label>
+                <input class="pagamento__input shadow-8dp" type="number" id="troco-para" min="0" step="0.01" placeholder="Ex: 50,00">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="resumo-pedido scrollContainer hidden" data-modal="resumo">
 
         <!-- <div class="produto produto-resumo">
@@ -471,6 +529,11 @@
         </div>
       </div>
 
+      <div class="resumo-pagamento hidden" data-modal="resumo-pagamento">
+        <p class="titulo-carrinho">Forma de pagamento:</p>
+        <p class="resumo-pagamento__info" data-resumo-pagamento></p>
+      </div>
+
 
       <div class="total ">
         <div class="total-infos">
@@ -498,11 +561,15 @@
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-revisar"
                 onclick="cardapio.metodos.resumoPedido()">
-                <a href="#">Revisar Pedido</a>
+                <a href="#">Forma de pagamento</a>
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-continuar"
                 onclick="cardapio.metodos.carregarEndereco()">
                 <a href="#">Continuar</a>
+              </button>
+              <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-pagamento"
+                onclick="cardapio.metodos.validarPagamento()">
+                <a href="#">Revisar Pedido</a>
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-enviar">
                 <a href="javascript:void(0);" id="enviarPedido"

@@ -293,9 +293,10 @@ export default function initVerificarFuncionamento() {
   function bloquearBotoesCheckout(bloquear) {
     const btnContinuar = document.querySelector("[data-modal='btn-continuar']");
     const btnRevisar = document.querySelector("[data-modal='btn-revisar']");
+    const btnPagamento = document.querySelector("[data-modal='btn-pagamento']");
     const btnEnviar = document.querySelector("[data-modal='btn-enviar']");
 
-    [btnContinuar, btnRevisar, btnEnviar].forEach((btn) => {
+    [btnContinuar, btnRevisar, btnPagamento, btnEnviar].forEach((btn) => {
       if (btn) {
         if (bloquear) {
           btn.style.pointerEvents = "none";

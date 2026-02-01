@@ -21,7 +21,7 @@
   width: max-content;
   justify-content: space-between;
   align-items: center;
-  width: 16.8rem;
+  width: 22.4rem;
   position: relative;
   color: var(--color-black-heavy);
 }
@@ -44,7 +44,8 @@
 
 .etapa1.checked,
 .etapa2.checked,
-.etapa3.checked {
+.etapa3.checked,
+.etapa4.checked {
   background-color: var(--color-primary);
   border: 1px solid rgba(5, 5, 5, 0.466);
 }
@@ -71,8 +72,13 @@
   left: 102px;
 }
 
+.line3 {
+  left: 168px;
+}
+
 .line1.checked,
-.line2.checked {
+.line2.checked,
+.line3.checked {
   width: 30px;
   background-color: var(--color-primary);
 }
@@ -83,7 +89,7 @@
   }
 
   .etapas-numeros {
-    width: 13.4rem;
+    width: 18.6rem;
   }
 
   .etapa {
@@ -101,5 +107,9 @@
   }
   .line2 {
     left: 78px;
+  }
+
+  .line3 {
+    left: 130px;
   }
 }

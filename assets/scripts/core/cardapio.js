@@ -15,6 +15,8 @@ var meuCarrinho = [];
 
 var meuEndereco = null;
 
+var meuPagamento = null;
+
 var valorCarrinho = 0;
 
 var valorEntrega = 5;
@@ -28,6 +30,8 @@ cardapio.metodos = {
     cardapio.metodos.obterItensCardapio();
     cardapio.metodos.carregarBotaoReserva();
     cardapio.metodos.carregarBotaoLigar();
+    cardapio.metodos.initPagamento();
+    cardapio.metodos.initValidacaoEndereco();
   },
 
   obterItensCardapio: (categoria = "aves", vermais = false) => {
@@ -195,14 +199,17 @@ cardapio.metodos = {
       $(".products-container").removeClass("hidden");
 
       $(".local-entrega ").addClass("hidden");
+      $("[data-modal='pagamento']").addClass("hidden");
       $(".resumo-pedido").addClass("hidden");
       $("[data-modal='resumo-endereco']").addClass("hidden");
+      $("[data-modal='resumo-pagamento']").addClass("hidden");
 
       // botoes
       $("[data-modal='btn-continuar']").removeClass("hidden");
 
       $("[data-modal='btn-enviar']").addClass("hidden");
       $("[data-modal='btn-revisar']").addClass("hidden");
+      $("[data-modal='btn-pagamento']").addClass("hidden");
       $("[data-modal='btn-voltar']").addClass("hidden");
     }
 
@@ -224,6 +231,8 @@ cardapio.metodos = {
       $("[data-modal='products']").addClass("hidden");
       $("[data-modal='resumo']").addClass("hidden");
       $("[data-modal='resumo-endereco']").addClass("hidden");
+      $("[data-modal='resumo-pagamento']").addClass("hidden");
+      $("[data-modal='pagamento']").addClass("hidden");
       $("[data-modal='entrega']").removeClass("hidden");
       //botoes
 
@@ -231,6 +240,7 @@ cardapio.metodos = {
       $("[data-modal='btn-voltar']").removeClass("hidden");
 
       $("[data-modal='btn-continuar']").addClass("hidden");
+      $("[data-modal='btn-pagamento']").addClass("hidden");
       $("[data-modal='btn-enviar']").addClass("hidden");
     }
 
@@ -245,7 +255,65 @@ cardapio.metodos = {
       $(".line2").addClass("checked");
 
       $(".etapa3").addClass("checked");
+      // titulo
+
+      $("[data-modal='titulo-etapas'] h4").text("Forma de Pagamento:");
+
+      // containers
+
+      $("[data-modal='products']").addClass("hidden");
+      $("[data-modal='entrega']").addClass("hidden");
+      $("[data-modal='resumo']").addClass("hidden");
+      $("[data-modal='resumo-endereco']").addClass("hidden");
+      $("[data-modal='resumo-pagamento']").addClass("hidden");
+      $("[data-modal='pagamento']").removeClass("hidden");
+
+      const tipoPagamento = $("input[name='tipo-pagamento']:checked").val();
+      if (tipoPagamento === "online") {
+        $("[data-pagamento-online]").removeClass("hidden");
+        $("[data-pagamento-entrega]").addClass("hidden");
+        $("[data-pagamento-troco]").addClass("hidden");
+        $("[data-pagamento-troco-valor]").addClass("hidden");
+      }
+
+      if (tipoPagamento === "entrega") {
+        $("[data-pagamento-online]").addClass("hidden");
+        $("[data-pagamento-entrega]").removeClass("hidden");
+        const opcaoEntrega = $("input[name='pagamento-entrega-opcao']:checked").val();
+        if (opcaoEntrega === "dinheiro") {
+          $("[data-pagamento-troco]").removeClass("hidden");
+          const precisaTroco = $("input[name='troco-opcao']:checked").val();
+          if (precisaTroco === "sim") {
+            $("[data-pagamento-troco-valor]").removeClass("hidden");
+          }
+        }
+      }
+
+      //botoes
+
+      $("[data-modal='btn-pagamento']").removeClass("hidden");
+      $("[data-modal='btn-voltar']").removeClass("hidden");
+
+      $("[data-modal='btn-continuar']").addClass("hidden");
+      $("[data-modal='btn-revisar']").addClass("hidden");
+      $("[data-modal='btn-enviar']").addClass("hidden");
+    }
+
+    if (etapa == 4) {
+      // etapas
+      $(".line").removeClass("checked");
+
+      $(".etapa1").addClass("checked");
+      $(".line1").addClass("checked");
+
+      $(".etapa2").addClass("checked");
       $(".line2").addClass("checked");
+
+      $(".etapa3").addClass("checked");
+      $(".line3").addClass("checked");
+
+      $(".etapa4").addClass("checked");
+
       // titulo
 
       $("[data-modal='titulo-etapas'] h4").text("Itens do Pedido:");
@@ -254,8 +322,10 @@ cardapio.metodos = {
 
       $("[data-modal='products']").addClass("hidden");
       $("[data-modal='entrega']").addClass("hidden");
+      $("[data-modal='pagamento']").addClass("hidden");
       $("[data-modal='resumo']").removeClass("hidden");
       $("[data-modal='resumo-endereco']").removeClass("hidden");
+      $("[data-modal='resumo-pagamento']").removeClass("hidden");
 
       //botoes
 
@@ -264,6 +334,7 @@ cardapio.metodos = {
 
       $("[data-modal='btn-continuar']").addClass("hidden");
       $("[data-modal='btn-revisar']").addClass("hidden");
+      $("[data-modal='btn-pagamento']").addClass("hidden");
     }
   },
 
@@ -408,14 +479,21 @@ cardapio.metodos = {
           if (!("erro" in dados)) {
             // Atualiza os campos com os valores retornados
 
-            $("#endereco").val(dados.logradouro);
+            const logradouro = dados.logradouro ? dados.logradouro.trim() : "";
+            $("#endereco-entrega").val(logradouro);
             $("#bairro").val(dados.bairro);
             $("#cidade").val(dados.localidade);
             $("#uf").val(dados.uf);
-            $("#numero").focus();
+
+            if (!logradouro) {
+              cardapio.metodos.mensagem("CEP sem endereço informado. Preencha o endereço manualmente.", "info");
+              $("#endereco-entrega").focus();
+            } else {
+              $("#numero").focus();
+            }
           } else {
             cardapio.metodos.mensagem("CEP Não Encontrado. Preencha as informações manualmente.");
-            $("#endereco").focus();
+            $("#endereco-entrega").focus();
           }
         }).fail(function () {
           // Ocultar loader em caso de erro
@@ -434,12 +512,27 @@ cardapio.metodos = {
   // Validação Antes de prosseguir para a etapa 3
   resumoPedido: () => {
     let cep = $("#cep").val().trim();
-    let endereco = $("#endereco").val().trim();
+    let endereco = $("#endereco-entrega").val().trim();
     let bairro = $("#bairro").val().trim();
     let cidade = $("#cidade").val().trim();
     let uf = $("#uf").val().trim();
     let numero = $("#numero").val().trim();
     let complemento = $("#complemento").val().trim();
+
+    const camposObrigatorios = [
+      { selector: "#endereco-entrega", valor: endereco },
+      { selector: "#bairro", valor: bairro },
+      { selector: "#cidade", valor: cidade },
+      { selector: "#numero", valor: numero },
+    ];
+
+    camposObrigatorios.forEach((campo) => {
+      if (!campo.valor) {
+        $(campo.selector).addClass("input-erro");
+      } else {
+        $(campo.selector).removeClass("input-erro");
+      }
+    });
 
     if (cep.length <= 0) {
       cardapio.metodos.mensagem("Informe o CEP por favor");
@@ -447,33 +540,23 @@ cardapio.metodos = {
       return;
     }
 
-    if (endereco.length <= 0) {
-      cardapio.metodos.mensagem("Informe o Endereço por favor");
-      $("#endereco").focus();
-      return;
-    }
-
-    if (bairro.length <= 0) {
-      cardapio.metodos.mensagem("Informe o Bairro por favor");
-      $("#bairro").focus();
-      return;
-    }
-
-    if (cidade.length <= 0) {
-      cardapio.metodos.mensagem("Informe o cidade por favor");
-      $("#cidade").focus();
+    if (endereco.length <= 0 || bairro.length <= 0 || cidade.length <= 0 || numero.length <= 0) {
+      cardapio.metodos.mensagem("Preencha Endereço, Bairro, Cidade e Número para continuar.");
+      if (endereco.length <= 0) {
+        $("#endereco-entrega").focus();
+      } else if (bairro.length <= 0) {
+        $("#bairro").focus();
+      } else if (cidade.length <= 0) {
+        $("#cidade").focus();
+      } else {
+        $("#numero").focus();
+      }
       return;
     }
 
     if (uf == -1) {
       cardapio.metodos.mensagem("Informe o UF por favor");
       $("#uf").focus();
-      return;
-    }
-
-    if (numero.length <= 0) {
-      cardapio.metodos.mensagem("Informe o numero por favor");
-      $("#numero").focus();
       return;
     }
 
@@ -488,6 +571,124 @@ cardapio.metodos = {
     };
 
     cardapio.metodos.carregarEtapa(3);
+  },
+
+  initValidacaoEndereco: () => {
+    $(document).on("input", "#endereco-entrega, #bairro, #cidade, #numero", function () {
+      if ($(this).val().trim().length > 0) {
+        $(this).removeClass("input-erro");
+      }
+    });
+  },
+
+  initPagamento: () => {
+    const atualizarVisibilidadePagamento = () => {
+      const tipo = $("input[name='tipo-pagamento']:checked").val();
+
+      if (tipo === "online") {
+        $("[data-pagamento-online]").removeClass("hidden");
+        $("[data-pagamento-entrega]").addClass("hidden");
+        $("[data-pagamento-troco]").addClass("hidden");
+        $("[data-pagamento-troco-valor]").addClass("hidden");
+        $("input[name='pagamento-online-opcao']").prop("checked", true);
+        $("input[name='pagamento-entrega-opcao']").prop("checked", false);
+      }
+
+      if (tipo === "entrega") {
+        $("[data-pagamento-online]").addClass("hidden");
+        $("[data-pagamento-entrega]").removeClass("hidden");
+      }
+    };
+
+    $(document).on("change", "input[name='tipo-pagamento']", () => {
+      atualizarVisibilidadePagamento();
+    });
+
+    $(document).on("change", "input[name='pagamento-entrega-opcao']", function () {
+      const opcao = $(this).val();
+      if (opcao === "dinheiro") {
+        $("[data-pagamento-troco]").removeClass("hidden");
+      } else {
+        $("[data-pagamento-troco]").addClass("hidden");
+        $("[data-pagamento-troco-valor]").addClass("hidden");
+        $("input[name='troco-opcao'][value='nao']").prop("checked", true);
+        $("#troco-para").val("");
+      }
+    });
+
+    $(document).on("change", "input[name='troco-opcao']", function () {
+      const precisa = $(this).val();
+      if (precisa === "sim") {
+        $("[data-pagamento-troco-valor]").removeClass("hidden");
+      } else {
+        $("[data-pagamento-troco-valor]").addClass("hidden");
+        $("#troco-para").val("");
+      }
+    });
+  },
+
+  validarPagamento: () => {
+    const tipo = $("input[name='tipo-pagamento']:checked").val();
+
+    if (!tipo) {
+      cardapio.metodos.mensagem("Selecione a forma de pagamento.");
+      return;
+    }
+
+    let descricao = "";
+    let opcao = "";
+    let troco = null;
+    let trocoPara = null;
+
+    if (tipo === "online") {
+      opcao = $("input[name='pagamento-online-opcao']:checked").val();
+      if (!opcao) {
+        cardapio.metodos.mensagem("Selecione a opção Pix.");
+        return;
+      }
+      descricao = "Online - Pix";
+    }
+
+    if (tipo === "entrega") {
+      opcao = $("input[name='pagamento-entrega-opcao']:checked").val();
+      if (!opcao) {
+        cardapio.metodos.mensagem("Selecione cartão ou dinheiro.");
+        return;
+      }
+
+      if (opcao === "cartao") {
+        descricao = "Na entrega - Cartão";
+      }
+
+      if (opcao === "dinheiro") {
+        troco = $("input[name='troco-opcao']:checked").val();
+        if (troco === "sim") {
+          const valorTroco = $("#troco-para").val().trim();
+          if (!valorTroco || parseFloat(valorTroco) <= 0) {
+            cardapio.metodos.mensagem("Informe o valor para troco.");
+            return;
+          }
+          trocoPara = parseFloat(valorTroco.replace(",", "."));
+          const trocoFormatado = trocoPara.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+          descricao = `Na entrega - Dinheiro (troco para ${trocoFormatado})`;
+        } else {
+          descricao = "Na entrega - Dinheiro (sem troco)";
+        }
+      }
+    }
+
+    meuPagamento = {
+      tipo,
+      opcao,
+      troco,
+      trocoPara,
+      descricao,
+    };
+
+    cardapio.metodos.carregarEtapa(4);
     cardapio.metodos.carregarResumo();
   },
 
@@ -510,6 +711,12 @@ cardapio.metodos = {
       `${meuEndereco.cidade}-${meuEndereco.uf} / ${meuEndereco.cep}.  ${meuEndereco.complemento}.`,
     );
 
+    if (meuPagamento?.descricao) {
+      $("[data-resumo-pagamento]").text(meuPagamento.descricao);
+    } else {
+      $("[data-resumo-pagamento]").text("Não informado");
+    }
+
     cardapio.metodos.finalizarPedido();
   },
 
@@ -520,6 +727,11 @@ cardapio.metodos = {
       texto += "\n*Endereço de entrega:*";
       texto += `\n${meuEndereco.endereco}, ${meuEndereco.numero}, ${meuEndereco.bairro}`;
       texto += `\n${meuEndereco.cidade}-${meuEndereco.uf} / ${meuEndereco.cep} ${meuEndereco.complemento}`;
+      if (meuPagamento?.descricao) {
+        texto += `\n\n*Forma de pagamento:* ${meuPagamento.descricao}`;
+      } else {
+        texto += "\n\n*Forma de pagamento:* Não informado";
+      }
       texto += `\n\n*Total (com entrega): ${(valorCarrinho + valorEntrega).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
@@ -588,6 +800,7 @@ cardapio.metodos = {
     meuCarrinho = [];
     meuEndereco = null;
     valorCarrinho = 0;
+    meuPagamento = null;
 
     // Limpar localStorage
     localStorage.removeItem("meuCarrinho");
@@ -596,12 +809,17 @@ cardapio.metodos = {
 
     // Limpar campos do formulário
     $("#cep").val("");
-    $("#endereco").val("");
+    $("#endereco-entrega").val("");
     $("#bairro").val("");
     $("#cidade").val("");
     $("#uf").val("");
     $("#numero").val("");
     $("#complemento").val("");
+    $("input[name='tipo-pagamento']").prop("checked", false);
+    $("input[name='pagamento-online-opcao']").prop("checked", false);
+    $("input[name='pagamento-entrega-opcao']").prop("checked", false);
+    $("input[name='troco-opcao'][value='nao']").prop("checked", true);
+    $("#troco-para").val("");
 
     // Atualizar badge
     cardapio.metodos.atualizarBadgeTotal();
@@ -628,6 +846,7 @@ cardapio.metodos = {
     meuCarrinho = [];
     meuEndereco = null;
     valorCarrinho = 0;
+    meuPagamento = null;
 
     // Limpar localStorage
     localStorage.removeItem("meuCarrinho");
@@ -636,12 +855,17 @@ cardapio.metodos = {
 
     // Limpar campos do formulário
     $("#cep").val("");
-    $("#endereco").val("");
+    $("#endereco-entrega").val("");
     $("#bairro").val("");
     $("#cidade").val("");
     $("#uf").val("");
     $("#numero").val("");
     $("#complemento").val("");
+    $("input[name='tipo-pagamento']").prop("checked", false);
+    $("input[name='pagamento-online-opcao']").prop("checked", false);
+    $("input[name='pagamento-entrega-opcao']").prop("checked", false);
+    $("input[name='troco-opcao'][value='nao']").prop("checked", true);
+    $("#troco-para").val("");
 
     // Atualizar badge
     cardapio.metodos.atualizarBadgeTotal();
