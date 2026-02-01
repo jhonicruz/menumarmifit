@@ -4,24 +4,43 @@
  */
 
 export default function initVerificarFuncionamento() {
+  // CONFIGURAÇÃO DE FUSO HORÁRIO
+  // Iguatu, CE está em GMT-3 (horário de Brasília)
+  // Se precisar ajustar, altere este valor
+  const TIMEZONE_OFFSET = -3; // -3 para Brasília (GMT-3)
+
   // Horários específicos por dia da semana (ÚNICA FONTE DA VERDADE)
   // 0 = domingo, 1 = segunda, ..., 6 = sábado
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 24], // segunda: 7h às 17h
-    2: [7, 24], // terça: 7h às 17h
-    3: [7, 24], // quarta: 7h às 17h
-    4: [7, 24], // quinta: 7h às 17h
-    5: [7, 24], // sexta: 7h às 17h
+    1: [7, 23], // segunda: 7h às 23h
+    2: [7, 23], // terça: 7h às 23h
+    3: [7, 23], // quarta: 7h às 23h
+    4: [7, 23], // quinta: 7h às 23h
+    5: [7, 23], // sexta: 7h às 23h
     6: [8, 14], // sábado: 8h às 14h
   };
+
+  /**
+   * Obtém a hora atual com offset de fuso horário correto
+   * @returns {Date} Data/hora ajustada ao fuso horário configurado
+   */
+  function getHoraAtualComTimezone() {
+    const agora = new Date();
+    const offsetLocal = agora.getTimezoneOffset() / 60; // Converte minutos para horas
+    const offsetDesejado = TIMEZONE_OFFSET;
+    const diferenca = offsetDesejado - offsetLocal;
+
+    const horaCorrigida = new Date(agora.getTime() + diferenca * 60 * 60 * 1000);
+    return horaCorrigida;
+  }
 
   /**
    * Retorna se a loja está aberta ou fechada
    * @returns {boolean} true se aberto, false se fechado
    */
   window.isLojaAberta = function () {
-    const agora = new Date();
+    const agora = getHoraAtualComTimezone();
     const horaAtual = agora.getHours();
     const diaSemanaAtual = agora.getDay();
 
@@ -31,7 +50,9 @@ export default function initVerificarFuncionamento() {
       return false; // Fechado
     }
 
-    return horaAtual >= horarioHoje[0] && horaAtual < horarioHoje[1];
+    const aberta = horaAtual >= horarioHoje[0] && horaAtual < horarioHoje[1];
+    console.log(`🕐 Verificação: ${horaAtual}:${String(agora.getMinutes()).padStart(2, '0')} (dia ${diaSemanaAtual}) - ${aberta ? '✅ ABERTA' : '❌ FECHADA'}`);
+    return aberta;
   };
 
   /**
@@ -39,21 +60,11 @@ export default function initVerificarFuncionamento() {
    * @returns {object} { aberta: boolean, mensagem: string, proxima_abertura: string }
    */
   window.getStatusLoja = function () {
-    const agora = new Date();
+    const agora = getHoraAtualComTimezone();
     const horaAtual = agora.getHours();
     const diaSemanaAtual = agora.getDay();
 
     const diasSemana = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
-
-    const horariosPorDia = {
-      0: null,
-      1: [7, 24],
-      2: [7, 24],
-      3: [7, 24],
-      4: [7, 24],
-      5: [7, 24],
-      6: [8, 14],
-    };
 
     const horarioHoje = horariosPorDia[diaSemanaAtual];
 
