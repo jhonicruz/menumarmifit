@@ -9,12 +9,12 @@ export default function initVerificarFuncionamento() {
   // Horário de fechamento: use 0 para meia-noite (00:00)
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 0], // segunda: 7h às 00h (meia-noite)
-    2: [7, 0], // terça: 7h às 00h (meia-noite)
-    3: [7, 0], // quarta: 7h às 00h (meia-noite)
-    4: [7, 0], // quinta: 7h às 00h (meia-noite)
-    5: [7, 0], // sexta: 7h às 00h (meia-noite)
-    6: [8, 0], // sábado: 8h às 00h (meia-noite)
+    1: [7, 17], // segunda: 7h às 17h
+    2: [7, 17], // terça: 7h às 17h
+    3: [7, 17], // quarta: 7h às 17h
+    4: [7, 17], // quinta: 7h às 17h
+    5: [7, 17], // sexta: 7h às 17h
+    6: [8, 14], // sábado: 8h às 14h
   };
 
   /**
@@ -26,17 +26,19 @@ export default function initVerificarFuncionamento() {
     const horaAtual = agora.getHours();
     const diaSemanaAtual = agora.getDay();
 
-    console.log(`🕐 Hora local do navegador: ${horaAtual}:${String(agora.getMinutes()).padStart(2, '0')} (dia ${diaSemanaAtual})`);
+    console.log(
+      `🕐 Hora local do navegador: ${horaAtual}:${String(agora.getMinutes()).padStart(2, "0")} (dia ${diaSemanaAtual})`,
+    );
 
     const horarioHoje = horariosPorDia[diaSemanaAtual];
 
     if (!horarioHoje) {
-      console.log('❌ FECHADA - Dia sem expediente');
+      console.log("❌ FECHADA - Dia sem expediente");
       return false; // Fechado
     }
 
     const [abertura, fechamento] = horarioHoje;
-    
+
     // Se fechamento = 0, significa meia-noite (00:00 do dia seguinte)
     // Neste caso, está aberto se hora >= abertura OU hora < fechamento (0)
     let aberta;
@@ -47,7 +49,7 @@ export default function initVerificarFuncionamento() {
       // Horário normal: aberto das Xh até Yh
       aberta = horaAtual >= abertura && horaAtual < fechamento;
     }
-    
+
     console.log(
       `🕐 Verificação: ${horaAtual}:${String(agora.getMinutes()).padStart(2, "0")} (dia ${diaSemanaAtual}) - ${aberta ? "✅ ABERTA" : "❌ FECHADA"}`,
     );
