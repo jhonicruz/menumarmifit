@@ -11,14 +11,15 @@ export default function initVerificarFuncionamento() {
 
   // Horários específicos por dia da semana (ÚNICA FONTE DA VERDADE)
   // 0 = domingo, 1 = segunda, ..., 6 = sábado
+  // ⚠️ MODO TESTE: Todos os dias funcionam até meia noite (24)
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 23], // segunda: 7h às 23h
-    2: [7, 23], // terça: 7h às 23h
-    3: [7, 23], // quarta: 7h às 23h
-    4: [7, 23], // quinta: 7h às 23h
-    5: [7, 23], // sexta: 7h às 23h
-    6: [8, 14], // sábado: 8h às 14h
+    1: [7, 24], // segunda: 7h às 24h (TESTE)
+    2: [7, 24], // terça: 7h às 24h (TESTE)
+    3: [7, 24], // quarta: 7h às 24h (TESTE)
+    4: [7, 24], // quinta: 7h às 24h (TESTE)
+    5: [7, 24], // sexta: 7h às 24h (TESTE)
+    6: [8, 24], // sábado: 8h às 24h (TESTE)
   };
 
   /**
@@ -51,7 +52,9 @@ export default function initVerificarFuncionamento() {
     }
 
     const aberta = horaAtual >= horarioHoje[0] && horaAtual < horarioHoje[1];
-    console.log(`🕐 Verificação: ${horaAtual}:${String(agora.getMinutes()).padStart(2, '0')} (dia ${diaSemanaAtual}) - ${aberta ? '✅ ABERTA' : '❌ FECHADA'}`);
+    console.log(
+      `🕐 Verificação: ${horaAtual}:${String(agora.getMinutes()).padStart(2, "0")} (dia ${diaSemanaAtual}) - ${aberta ? "✅ ABERTA" : "❌ FECHADA"}`,
+    );
     return aberta;
   };
 
