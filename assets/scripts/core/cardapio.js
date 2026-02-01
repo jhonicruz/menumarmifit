@@ -247,6 +247,7 @@ cardapio.metodos = {
     if (etapa == 3) {
       // etapas
       $(".line").removeClass("checked");
+      $(".etapa").removeClass("checked");
 
       $(".etapa1").addClass("checked");
       $(".line1").addClass("checked");
@@ -646,7 +647,7 @@ cardapio.metodos = {
         cardapio.metodos.mensagem("Selecione a opção Pix.");
         return;
       }
-      descricao = "Online - Pix";
+      descricao = "Pagamento online: Pix";
     }
 
     if (tipo === "entrega") {
@@ -657,7 +658,7 @@ cardapio.metodos = {
       }
 
       if (opcao === "cartao") {
-        descricao = "Na entrega - Cartão";
+        descricao = "Pagamento na entrega: Cartão";
       }
 
       if (opcao === "dinheiro") {
@@ -673,9 +674,9 @@ cardapio.metodos = {
             style: "currency",
             currency: "BRL",
           });
-          descricao = `Na entrega - Dinheiro (troco para ${trocoFormatado})`;
+          descricao = `Pagamento na entrega: Dinheiro (troco para ${trocoFormatado})`;
         } else {
-          descricao = "Na entrega - Dinheiro (sem troco)";
+          descricao = "Pagamento na entrega: Dinheiro";
         }
       }
     }

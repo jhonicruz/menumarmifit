@@ -10,6 +10,7 @@
   background-color: var(--color-white);
   z-index: 999;
   animation: modal 0.3s ease-in-out;
+  overflow-y: auto;
 }
 
 @keyframes modal {
@@ -26,6 +27,9 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 2rem;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .modal-cart.hidden {
@@ -145,12 +149,17 @@
 
 .resumo-pagamento {
   display: flex;
-  flex-direction: column;
+  justify-self: start;
   gap: 0.6rem;
+  width: 100%;
 }
 
 .resumo-pagamento__info {
   font-size: 1.4rem;
+  justify-content: start;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.4;
 }
 
 .control-form {
@@ -264,8 +273,9 @@
     display: flex;
     padding: initial;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1rem;
     padding: 1rem;
+    padding-bottom: 2rem;
   }
 
   .products-container {

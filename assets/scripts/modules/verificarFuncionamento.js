@@ -4,54 +4,50 @@
  */
 
 export default function initVerificarFuncionamento() {
-  // CONFIGURAÇÃO DE FUSO HORÁRIO
-  // Iguatu, CE está em GMT-3 (horário de Brasília)
-  // Se precisar ajustar, altere este valor
-  const TIMEZONE_OFFSET = -3; // -3 para Brasília (GMT-3)
-
   // Horários específicos por dia da semana (ÚNICA FONTE DA VERDADE)
   // 0 = domingo, 1 = segunda, ..., 6 = sábado
-  // ⚠️ MODO TESTE: Todos os dias funcionam até meia noite (24)
+  // Horário de fechamento: use 0 para meia-noite (00:00)
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 24], // segunda: 7h às 24h (TESTE)
-    2: [7, 24], // terça: 7h às 24h (TESTE)
-    3: [7, 24], // quarta: 7h às 24h (TESTE)
-    4: [7, 24], // quinta: 7h às 24h (TESTE)
-    5: [7, 24], // sexta: 7h às 24h (TESTE)
-    6: [8, 24], // sábado: 8h às 24h (TESTE)
+    1: [7, 0], // segunda: 7h às 00h (meia-noite)
+    2: [7, 0], // terça: 7h às 00h (meia-noite)
+    3: [7, 0], // quarta: 7h às 00h (meia-noite)
+    4: [7, 0], // quinta: 7h às 00h (meia-noite)
+    5: [7, 0], // sexta: 7h às 00h (meia-noite)
+    6: [8, 0], // sábado: 8h às 00h (meia-noite)
   };
-
-  /**
-   * Obtém a hora atual com offset de fuso horário correto
-   * @returns {Date} Data/hora ajustada ao fuso horário configurado
-   */
-  function getHoraAtualComTimezone() {
-    const agora = new Date();
-    const offsetLocal = agora.getTimezoneOffset() / 60; // Converte minutos para horas
-    const offsetDesejado = TIMEZONE_OFFSET;
-    const diferenca = offsetDesejado - offsetLocal;
-
-    const horaCorrigida = new Date(agora.getTime() + diferenca * 60 * 60 * 1000);
-    return horaCorrigida;
-  }
 
   /**
    * Retorna se a loja está aberta ou fechada
    * @returns {boolean} true se aberto, false se fechado
    */
   window.isLojaAberta = function () {
-    const agora = getHoraAtualComTimezone();
+    const agora = new Date();
     const horaAtual = agora.getHours();
     const diaSemanaAtual = agora.getDay();
+
+    console.log(`🕐 Hora local do navegador: ${horaAtual}:${String(agora.getMinutes()).padStart(2, '0')} (dia ${diaSemanaAtual})`);
 
     const horarioHoje = horariosPorDia[diaSemanaAtual];
 
     if (!horarioHoje) {
+      console.log('❌ FECHADA - Dia sem expediente');
       return false; // Fechado
     }
 
-    const aberta = horaAtual >= horarioHoje[0] && horaAtual < horarioHoje[1];
+    const [abertura, fechamento] = horarioHoje;
+    
+    // Se fechamento = 0, significa meia-noite (00:00 do dia seguinte)
+    // Neste caso, está aberto se hora >= abertura OU hora < fechamento (0)
+    let aberta;
+    if (fechamento === 0) {
+      // Fecha à meia-noite: aberto das Xh até 23:59
+      aberta = horaAtual >= abertura;
+    } else {
+      // Horário normal: aberto das Xh até Yh
+      aberta = horaAtual >= abertura && horaAtual < fechamento;
+    }
+    
     console.log(
       `🕐 Verificação: ${horaAtual}:${String(agora.getMinutes()).padStart(2, "0")} (dia ${diaSemanaAtual}) - ${aberta ? "✅ ABERTA" : "❌ FECHADA"}`,
     );
@@ -63,7 +59,7 @@ export default function initVerificarFuncionamento() {
    * @returns {object} { aberta: boolean, mensagem: string, proxima_abertura: string }
    */
   window.getStatusLoja = function () {
-    const agora = getHoraAtualComTimezone();
+    const agora = new Date();
     const horaAtual = agora.getHours();
     const diaSemanaAtual = agora.getDay();
 
@@ -106,7 +102,8 @@ export default function initVerificarFuncionamento() {
       };
     }
 
-    if (horaAtual >= horarioHoje[1]) {
+    // Se fechamento = 0 (meia-noite), nunca entra nesta condição durante o mesmo dia
+    if (horarioHoje[1] !== 0 && horaAtual >= horarioHoje[1]) {
       // Fechou hoje
       let proximoDia = (diaSemanaAtual + 1) % 7;
       let proximoHorario = horariosPorDia[proximoDia];
@@ -132,9 +129,10 @@ export default function initVerificarFuncionamento() {
     }
 
     // Loja aberta
+    const horarioFechamento = horarioHoje[1] === 0 ? "00h (meia-noite)" : `${horarioHoje[1]}h`;
     return {
       aberta: true,
-      mensagem: `Loja aberta até às ${horarioHoje[1]}h`,
+      mensagem: `Loja aberta até às ${horarioFechamento}`,
       proxima_abertura: null,
     };
   };

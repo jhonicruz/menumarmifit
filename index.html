@@ -485,7 +485,8 @@
 
               <div class="pagamento__troco-valor hidden" data-pagamento-troco-valor>
                 <label class="pagamento__label" for="troco-para">Troco para quanto?</label>
-                <input class="pagamento__input shadow-8dp" type="number" id="troco-para" min="0" step="0.01" placeholder="Ex: 50,00">
+                <input class="pagamento__input shadow-8dp" type="number" id="troco-para" min="0" step="0.01"
+                  placeholder="Ex: 50,00">
               </div>
             </div>
           </div>
@@ -530,7 +531,6 @@
       </div>
 
       <div class="resumo-pagamento hidden" data-modal="resumo-pagamento">
-        <p class="titulo-carrinho">Forma de pagamento:</p>
         <p class="resumo-pagamento__info" data-resumo-pagamento></p>
       </div>
 
@@ -557,7 +557,7 @@
             <div class="total-botao">
               <button class="btn-primary  button-total shadow-8dp hidden" data-modal="btn-voltar"
                 onclick="cardapio.metodos.voltarEtapa()">
-                <a href="#">Voltar</a>
+                <a href="javascript:void(0);">Voltar</a>
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-revisar"
                 onclick="cardapio.metodos.resumoPedido()">
@@ -573,7 +573,7 @@
               </button>
               <button class="btn-primary btn-primary--yellow button-total shadow-8dp hidden" data-modal="btn-enviar">
                 <a href="javascript:void(0);" id="enviarPedido"
-                  onclick="cardapio.metodos.finalizarEnvio(); return false;">Enviar</a>
+                  onclick="cardapio.metodos.finalizarEnvio(); return false;">Enviar Pedido</a>
               </button>
 
 
