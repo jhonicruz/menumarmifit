@@ -27,7 +27,7 @@ export default function initCardapioDodia() {
   const container = document.querySelector("[data-cardapio-container]");
   const errorDiv = document.querySelector("[data-cardapio-error]");
   const loadingDiv = document.querySelector(".cardapio-do-dia__loading");
-  const pratos = document.querySelector(".cardapio-do-dia__pratos");
+  const pratos = document.querySelector("[data-cardapio-dia]");
 
   if (!container) return;
 

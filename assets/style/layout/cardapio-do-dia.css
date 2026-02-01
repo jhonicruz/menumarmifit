@@ -70,10 +70,14 @@
 
 /* Responsividade específica para o grid em dispositivos pequenos */
 .cardapio-do-dia__pratos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
   width: 100%;
   max-width: 1100px;
+  padding: 2rem 2rem;
+  gap: 2.4rem;
+  justify-content: center;
   margin: 0 auto;
-  padding: 4rem;
 }
 
 @media (max-width: 1200px) {

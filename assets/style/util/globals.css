@@ -35,9 +35,9 @@
 
 .subtitles--sections {
   font-family: "poppinsbold", sans-serif;
-  font-size: 4rem;
   color: var(--color-black);
   font-size: clamp(2.4rem, 2.2rem + 1.1vw, 6rem);
+  text-align: center;
 }
 
 .title--cards {
