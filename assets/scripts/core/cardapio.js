@@ -32,6 +32,7 @@ cardapio.metodos = {
     cardapio.metodos.carregarBotaoLigar();
     cardapio.metodos.initPagamento();
     cardapio.metodos.initValidacaoEndereco();
+    cardapio.metodos.initMascaraCep();
   },
 
   obterItensCardapio: (categoria = "aves", vermais = false) => {
@@ -584,6 +585,40 @@ cardapio.metodos = {
     $(document).on("input", "#endereco-entrega, #bairro, #cidade, #numero", function () {
       if ($(this).val().trim().length > 0) {
         $(this).removeClass("input-erro");
+      }
+    });
+  },
+
+  // Inicializa a máscara de CEP e busca automática
+  initMascaraCep: () => {
+    $(document).on("input", "#cep", function (e) {
+      let valor = $(this).val().replace(/\D/g, ""); // Remove tudo que não é dígito
+      
+      // Aplica a máscara 00000-000
+      if (valor.length > 5) {
+        valor = valor.substring(0, 5) + "-" + valor.substring(5, 8);
+      }
+      
+      $(this).val(valor);
+      
+      // Remove o erro visual se houver
+      $(this).removeClass("input-erro");
+      
+      // Busca automática quando completar 9 caracteres (00000-000)
+      if (valor.length === 9) {
+        cardapio.metodos.buscarCep();
+      }
+    });
+
+    // Permitir apenas números e hífen
+    $(document).on("keypress", "#cep", function (e) {
+      const charCode = e.which || e.keyCode;
+      const charStr = String.fromCharCode(charCode);
+      
+      // Permite apenas números
+      if (!/[0-9]/.test(charStr)) {
+        e.preventDefault();
+        return false;
       }
     });
   },
