@@ -49,18 +49,3 @@
   background-color: var(--color-primary);
   color: var(--color-white);
 }
-
-/* .btn-primary.btn-primary.btn--categories {
-  height: 45px;
-  border-radius: 13px;
-}
-
-.btn-primary.btn-primary.btn--categories i {
-  width: auto;
-  height: auto;
-  background-color: transparent;
-}
-
-.btn-primary.btn--categories a {
-  font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
-} */

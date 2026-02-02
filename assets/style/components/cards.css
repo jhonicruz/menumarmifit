@@ -158,10 +158,6 @@
   color: var(--color-black-heavy) !important;
 }
 
-/* .cards__item:hover .cards__item__content__text * {
-  color: var(--color-white);
-} */
-
 .cards__item:hover .cards__item__content .add-to-cart .btn-add-box .btn-add {
   color: var(--color-white) !important;
   background-color: var(--color-black) !important;

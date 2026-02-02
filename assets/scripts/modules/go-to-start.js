@@ -20,7 +20,7 @@ export default function initgoToStart() {
               top: initPage,
               behavior: "smooth",
             });
-          })
+          }),
         );
       } else {
         btn.classList.remove("show");
@@ -28,35 +28,3 @@ export default function initgoToStart() {
     }
   }
 }
-
-// events.forEach((userEvent) => btn.addEventListener(userEvent, handleClick));
-
-// function handleClick() {
-//   e.preventDefault();
-//   console.log(initPage);
-//   window.scrollTo({
-//     top: initPage,
-//     behavior: "smooth",
-//   });
-// }
-// const events = ["touch", "click"];
-
-// if (btn) {
-//   events.forEach((userEvent) =>
-//     btn.addEventListener(userEvent, (e) => {
-//       e.preventDefault();
-//       const initPage = 0;
-
-//       const targetScroll =
-//         window.screenY > 2000 ? btn.classList.add("show") : btn.classList.remove("show");
-
-//       console.log(targetScroll);
-
-//       // console.log(metadeTela);
-//       window.scrollTo({
-//         top: initPage,
-//         behavior: "smooth",
-//       });
-//     })
-//   );
-// }

@@ -10,4 +10,5 @@ yarn-error.log*
 pnpm-debug.log*
 coverage/
 
-CARDAPIO_DO_DIA_GUIA.md
+/CARDAPIO_DO_DIA_GUIA.md/
+./CARDAPIO_DO_DIA_GUIA.md

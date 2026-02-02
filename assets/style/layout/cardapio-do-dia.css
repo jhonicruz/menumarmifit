@@ -64,10 +64,6 @@
   display: none;
 }
 
-/* Grid de Pratos (reutilizando .cards) */
-/* Sem sobrescrita - usa grid padrão do .cards */
-
-/* Responsividade específica para o grid em dispositivos pequenos */
 .cardapio-do-dia__pratos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
