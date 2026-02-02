@@ -593,17 +593,17 @@ cardapio.metodos = {
   initMascaraCep: () => {
     $(document).on("input", "#cep", function (e) {
       let valor = $(this).val().replace(/\D/g, ""); // Remove tudo que não é dígito
-      
+
       // Aplica a máscara 00000-000
       if (valor.length > 5) {
         valor = valor.substring(0, 5) + "-" + valor.substring(5, 8);
       }
-      
+
       $(this).val(valor);
-      
+
       // Remove o erro visual se houver
       $(this).removeClass("input-erro");
-      
+
       // Busca automática quando completar 9 caracteres (00000-000)
       if (valor.length === 9) {
         cardapio.metodos.buscarCep();
@@ -614,7 +614,7 @@ cardapio.metodos = {
     $(document).on("keypress", "#cep", function (e) {
       const charCode = e.which || e.keyCode;
       const charStr = String.fromCharCode(charCode);
-      
+
       // Permite apenas números
       if (!/[0-9]/.test(charStr)) {
         e.preventDefault();

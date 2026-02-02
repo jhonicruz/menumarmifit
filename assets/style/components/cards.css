@@ -162,8 +162,9 @@
   color: var(--color-white);
 } */
 
-.cards__item:hover .cards__item__content .add-to-cart .btn-add-box .btn-add a {
+.cards__item:hover .cards__item__content .add-to-cart .btn-add-box .btn-add {
   color: var(--color-white) !important;
+  background-color: var(--color-black) !important;
 }
 
 .cards__item:hover .cards__item__content .cards__item__content__text .obs-tag {
