@@ -47,7 +47,7 @@
 }
 
 .banner__content .banner__content__text h1 {
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .banner__content h1 .primary-color {
@@ -161,6 +161,7 @@
   .banner__button {
     flex-direction: column;
     align-items: flex-start;
+    display: none;
   }
   .banner__content__social-icons {
     display: none;

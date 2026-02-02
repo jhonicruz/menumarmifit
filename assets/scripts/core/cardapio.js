@@ -984,7 +984,7 @@ cardapio.templates = {
                           <div class="btn-add-box add-to-cart-modal">
                             <span  onclick="cardapio.metodos.removerItemCarrinho('\${id}')">
                               <a class="btn-add">
-                                <i class="fa fa-times"></i>
+                                <i class="fa fa-trash"></i>
                               </a>
                             </span>
                           </div>

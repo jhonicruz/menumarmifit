@@ -7,8 +7,6 @@
   align-items: center;
   height: 80px;
   flex-direction: column;
-  /* opacity: 0; */
-  /* visibility: hidden; */
   transition:
     opacity 0.2s ease,
     visibility 0.2s ease;
@@ -69,12 +67,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: var(--color-black);
+  background-color: var(--color-green);
   font-size: 16px;
   padding: 8px 16px;
   border-radius: 10px;
-  color: var(--color-white) !important;
+  color: var(--color-black-heavy) !important;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .btn-add-box .btn-add a {
@@ -100,12 +99,6 @@
 .add-to-cart.add-to-cart-modal .btn-add {
   background-color: #e74c3c;
 }
-
-/* @media (max-width: 466px) {
-  
-
-
-} */
 
 /* Variante Kit Detox */
 .add-to-cart.kit-detox-variant {

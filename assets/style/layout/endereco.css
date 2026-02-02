@@ -15,18 +15,8 @@
   flex-direction: column;
   gap: 1.4rem;
   max-width: 520px;
-}
-
-.endereco .section__title {
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0;
-  gap: 12px;
-}
-
-.endereco .section__title .title--sections,
-.endereco .section__title .subtitles--sections {
-  text-align: left;
+  justify-content: center;
+  text-align: center;
 }
 
 .endereco__address,
@@ -37,6 +27,7 @@
   font-size: 1.5rem;
   color: var(--color-black);
   line-height: 1.6;
+  justify-content: center;
 }
 
 .endereco__hours {
@@ -47,6 +38,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .endereco__map {
@@ -93,4 +86,15 @@
   .endereco__actions .btn-primary {
     width: 100%;
   }
-}
+
+  .endereco .section__title .title--sections,
+  .endereco .section__title .subtitles--sections {
+    text-align: center;
+  }
+  .subtitles--sections {
+    text-align: center !important;
+  }
+
+  .endereco__address { 
+    text-align: center; 
+  }
