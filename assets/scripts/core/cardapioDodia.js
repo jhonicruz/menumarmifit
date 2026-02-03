@@ -81,9 +81,11 @@ const cardapioDodia = {
           content_name: itemBase.nome,
           content_ids: [id],
           content_type: "product",
+          content_category: "cardapio-do-dia",
           contents: [{ id: id, quantity: qntd, item_price: precoNum }],
           value: precoNum * qntd,
           currency: "BRL",
+          num_items: qntd,
         });
       }
 

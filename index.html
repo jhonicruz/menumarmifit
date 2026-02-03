@@ -85,30 +85,33 @@
       ]
     }
   </script>
-  <!-- Meta Pixel Code -->
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1442503990662375');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1442503990662375&ev=PageView&noscript=1" /></noscript>
-  <!-- End Meta Pixel Code -->
+  <!-- Meta Pixel será carregado após consentimento -->
 </head>
 
 <body>
 
   <div class="container-mensagens" id="container-mensagens"></div>
+
+  <div class="consent-banner consent-banner--hidden" id="consent-banner" role="dialog" aria-live="polite"
+    aria-label="Consentimento de cookies">
+    <div class="consent-banner__content">
+      <div class="consent-banner__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+          <path d="M27.5 12c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5-.7-1.5-1.5-1.5z" />
+          <path
+            d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14c0-1.4-.2-2.7-.5-4-.3.2-.6.3-1 .3-1.1 0-2-.9-2-2 0-.4.1-.7.3-1-1.3-.3-2.6-.5-4-.5-.8 0-1.5-.7-1.5-1.5S15.2 6 16 6c.3 0 .7 0 1 .1.1-.3.1-.7.1-1 0-1.1.9-2 2-2 .4 0 .7.1 1 .3C18.7 2.2 17.4 2 16 2zm-3.5 7c.8 0 1.5.7 1.5 1.5S13.3 12 12.5 12 11 11.3 11 10.5 11.7 9 12.5 9zm-3 8c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5zm7.5 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-8c-.8 0-1.5-.7-1.5-1.5S20.2 12 21 12s1.5.7 1.5 1.5S21.8 15 21 15z" />
+        </svg>
+      </div>
+      <p class="consent-banner__text">
+        Usamos cookies para melhorar sua experiência.
+        <a href="privacidade.html" class="consent-banner__link">Política de Privacidade</a>
+      </p>
+      <div class="consent-banner__actions">
+        <button class="consent-btn consent-btn--decline" id="consent-decline">Recusar tudo</button>
+        <button class="consent-btn consent-btn--accept" id="consent-accept">Aceitar tudo</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Top Bar Status -->
   <div class="top-bar-status funcionamento">
@@ -723,6 +726,9 @@
       <p>
         <b>Marmifit Iguatu</b> &copy; Todos os direitos reservados.
       </p>
+      <p>
+        <a href="privacidade.html">Política de Privacidade</a>
+      </p>
     </div>
 
 
@@ -743,6 +749,109 @@
   <script src="./assets/scripts/api/dados.js"></script>
   <script src="./assets/scripts/core/cardapio.js"></script>
   <script src="./assets/scripts/core/cardapioDodia.js"></script>
+  <script>
+    (function () {
+      const CONSENT_KEY = "marmifit_consent_marketing";
+      const banner = document.getElementById("consent-banner");
+      const acceptBtn = document.getElementById("consent-accept");
+      const declineBtn = document.getElementById("consent-decline");
+
+      function hideBanner() {
+        if (banner) {
+          banner.classList.remove("consent-banner--show");
+          setTimeout(() => {
+            banner.classList.add("consent-banner--hidden");
+          }, 400);
+        }
+      }
+
+      function showBanner() {
+        if (banner) {
+          setTimeout(() => {
+            banner.classList.remove("consent-banner--hidden");
+            setTimeout(() => {
+              banner.classList.add("consent-banner--show");
+            }, 50);
+          }, 4000);
+        }
+      }
+
+      function loadMetaPixel() {
+        if (window.fbq) return;
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () {
+            n.callMethod ?
+              n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+          n.queue = []; t = b.createElement(e); t.async = !0;
+          t.src = v; s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1442503990662375');
+        fbq('track', 'PageView');
+      }
+
+      let stored = null;
+      try {
+        stored = localStorage.getItem(CONSENT_KEY);
+      } catch (e) {
+        stored = null;
+      }
+      if (stored === "granted") {
+        loadMetaPixel();
+        hideBanner();
+      } else if (stored === "denied") {
+        hideBanner();
+      } else {
+        showBanner();
+      }
+
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          try {
+            localStorage.setItem(CONSENT_KEY, "granted");
+          } catch (e) {
+            // Sem persistência disponível
+          }
+          loadMetaPixel();
+          hideBanner();
+        });
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener("click", function () {
+          try {
+            localStorage.setItem(CONSENT_KEY, "denied");
+          } catch (e) {
+            // Sem persistência disponível
+          }
+          hideBanner();
+        });
+      }
+
+      // Scroll Consent: aceita automaticamente ao rolar a página
+      let scrollAccepted = false;
+      window.addEventListener("scroll", function () {
+        if (scrollAccepted) return;
+        if (!stored || stored === null) {
+          const scrolled = window.scrollY || window.pageYOffset;
+          // Se rolar mais de 800px, considera aceite (usuário chegou ao cardápio)
+          if (scrolled > 800) {
+            scrollAccepted = true;
+            try {
+              localStorage.setItem(CONSENT_KEY, "granted");
+            } catch (e) {
+              // Sem persistência disponível
+            }
+            loadMetaPixel();
+            hideBanner();
+          }
+        }
+      });
+    })();
+  </script>
   <script type="module" src="./assets/scripts/main.js"></script>
 
 </body>

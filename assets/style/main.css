@@ -14,6 +14,7 @@
 @import "./components/badge-total.css";
 @import "./components/btn-cart.css";
 @import "./components/aviso-loja-fechada.css";
+@import "./components/consent-banner.css";
 @import "./components/modal-cart.css";
 @import "./components/modal-sucesso.css";
 @import "./components/steps.css";
@@ -31,3 +32,4 @@
 @import "./layout/endereco.css";
 @import "./layout/footer.css";
 @import "./layout/resumo.css";
+@import "./layout/privacidade.css";

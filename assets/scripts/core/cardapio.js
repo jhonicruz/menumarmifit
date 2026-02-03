@@ -161,14 +161,17 @@ cardapio.metodos = {
           meuCarrinho.push(item[0]);
         }
 
-        // Dispara evento AddToCart com dados dinâmicos
+        // Dispara evento AddToCart com dados dinâmicos enriquecidos
+        const categoriaAtiva = $(".categories ul li a.ativo").attr("id")?.split("menu-")[1] || "geral";
         cardapio.metodos.trackPixelEvent("AddToCart", {
           content_name: item[0].name,
           content_ids: [item[0].id],
           content_type: "product",
+          content_category: categoriaAtiva,
           contents: [{ id: item[0].id, quantity: qntdAtual, item_price: item[0].price }],
           value: item[0].price * qntdAtual,
           currency: "BRL",
+          num_items: qntdAtual,
         });
 
         // alert("Item adicionado ao carrinho");
@@ -488,11 +491,14 @@ cardapio.metodos = {
       item_price: e.price,
     }));
 
+    const totalItems = meuCarrinho.reduce((sum, e) => sum + e.qntd, 0);
+
     cardapio.metodos.trackPixelEvent("InitiateCheckout", {
       content_type: "product",
       contents,
       value: valorCarrinho + valorEntrega,
       currency: "BRL",
+      num_items: totalItems,
     });
 
     cardapio.metodos.carregarEtapa(2);
@@ -837,11 +843,18 @@ cardapio.metodos = {
       item_price: e.price,
     }));
 
+    const totalItems = meuCarrinho.reduce((sum, e) => sum + e.qntd, 0);
+    // Gera um order_id único baseado em timestamp
+    const orderId = `ORDER_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
     cardapio.metodos.trackPixelEvent("Purchase", {
       content_type: "product",
       contents,
       value: total,
       currency: "BRL",
+      num_items: totalItems,
+      content_ids: contents.map((c) => c.id),
+      order_id: orderId,
     });
 
     // Mostrar modal de sucesso com timer
