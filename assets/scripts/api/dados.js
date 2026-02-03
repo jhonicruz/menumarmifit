@@ -42,7 +42,7 @@ const MENU = {
     },
     {
       id: "panqueca-frango",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/aves/aves-panqueca.jpg",
       name: "Panqueca",
       dsc: "Frango desfiado com milho, ervilha, azeitona, molho branco, mussarela, repolho e cenoura refogada",
       peso: "350g",
@@ -104,7 +104,7 @@ const MENU = {
     },
     {
       id: "lasanha-patinho-moido",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/carnes/carnes-lasanha.jpg",
       name: "Lasanha",
       dsc: "Patinho moído com macarrão para lasanha, molho de tomate artesanal, mussarela e chia",
       peso: "350g",
@@ -156,7 +156,7 @@ const MENU = {
     },
     {
       id: "peixe-a-delicia",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/peixes/peixes-peixe-a-delicia.jpg",
       name: "Peixe à Delícia",
       dsc: "Filé de peixe com banana, molho branco, arroz com açafrão, mix de repolho e cenoura refogada",
       peso: "350g",
