@@ -9,7 +9,7 @@ export default function initVerificarFuncionamento() {
   // Horário de fechamento: use 0 para meia-noite (00:00)
   const horariosPorDia = {
     0: null, // domingo - fechado
-    1: [7, 17], // segunda: 7h às 17h
+    1: [7, 24], // segunda: 7h às 17h
     2: [7, 17], // terça: 7h às 17h
     3: [7, 17], // quarta: 7h às 17h
     4: [7, 17], // quinta: 7h às 17h
