@@ -52,7 +52,7 @@ const MENU = {
     },
     {
       id: "fricasse-frango",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/aves/aves-fricasse.jpg",
       name: "Fricassê",
       dsc: "Frango desfiado com creme de milho, batata palha, mussarela, arroz integral, brócolis, cenoura e beterraba",
       peso: "350g",
@@ -94,7 +94,7 @@ const MENU = {
     },
     {
       id: "molho-madeira-alcatra",
-      img: "./assets/img/cardapio/churrasco/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg",
+      img: "./assets/img/cardapio/carnes/carnes-molho-madeira.jpg",
       name: "Molho Madeira",
       dsc: "Alcatra com molho shoyu, bacon, arroz, ervilha, vagem e cenoura",
       peso: "350g",
