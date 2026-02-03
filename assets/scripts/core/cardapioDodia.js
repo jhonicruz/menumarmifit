@@ -75,6 +75,18 @@ const cardapioDodia = {
 
       qntdElement.textContent = "0";
 
+      // Dispara evento AddToCart com dados dinâmicos do Cardápio do Dia
+      if (typeof cardapio !== "undefined" && typeof cardapio.trackPixelEvent === "function") {
+        cardapio.trackPixelEvent("AddToCart", {
+          content_name: itemBase.nome,
+          content_ids: [id],
+          content_type: "product",
+          contents: [{ id: id, quantity: qntd, item_price: precoNum }],
+          value: precoNum * qntd,
+          currency: "BRL",
+        });
+      }
+
       if (typeof cardapio !== "undefined" && cardapio.metodos) {
         cardapio.metodos.mensagem("Item adicionado ao carrinho", "green");
         cardapio.metodos.atualizarBadgeTotal();

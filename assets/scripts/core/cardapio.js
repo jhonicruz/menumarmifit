@@ -91,6 +91,12 @@ cardapio.metodos = {
     $("#menu-" + categoria).addClass("ativo");
   },
 
+  trackPixelEvent: (event, payload = {}) => {
+    if (typeof fbq === "function") {
+      fbq("track", event, payload);
+    }
+  },
+
   // Clique no botão de Ver mais
   verMais: () => {
     var ativo = $(".categories ul li a.ativo").attr("id").split("menu-")[1];
@@ -154,6 +160,17 @@ cardapio.metodos = {
           item[0].qntd = qntdAtual;
           meuCarrinho.push(item[0]);
         }
+
+        // Dispara evento AddToCart com dados dinâmicos
+        cardapio.trackPixelEvent("AddToCart", {
+          content_name: item[0].name,
+          content_ids: [item[0].id],
+          content_type: "product",
+          contents: [{ id: item[0].id, quantity: qntdAtual, item_price: item[0].price }],
+          value: item[0].price * qntdAtual,
+          currency: "BRL",
+        });
+
         // alert("Item adicionado ao carrinho");
         cardapio.metodos.mensagem("Item adicionado ao carrinho", "green");
         $("#qntd-" + id).text(0);
@@ -463,6 +480,20 @@ cardapio.metodos = {
       cardapio.metodos.mensagem("Seu carrinho está vazio");
       return;
     }
+
+    // Dispara InitiateCheckout quando avança para etapa de endereço
+    const contents = meuCarrinho.map((e) => ({
+      id: e.id,
+      quantity: e.qntd,
+      item_price: e.price,
+    }));
+
+    cardapio.trackPixelEvent("InitiateCheckout", {
+      content_type: "product",
+      contents,
+      value: valorCarrinho + valorEntrega,
+      currency: "BRL",
+    });
 
     cardapio.metodos.carregarEtapa(2);
   },
@@ -798,6 +829,21 @@ cardapio.metodos = {
   },
 
   finalizarEnvio: () => {
+    // Dispara Purchase com dados dinâmicos do carrinho
+    const total = valorCarrinho + valorEntrega;
+    const contents = meuCarrinho.map((e) => ({
+      id: e.id,
+      quantity: e.qntd,
+      item_price: e.price,
+    }));
+
+    cardapio.trackPixelEvent("Purchase", {
+      content_type: "product",
+      contents,
+      value: total,
+      currency: "BRL",
+    });
+
     // Mostrar modal de sucesso com timer
     cardapio.metodos.mostrarModalSucesso();
   },
