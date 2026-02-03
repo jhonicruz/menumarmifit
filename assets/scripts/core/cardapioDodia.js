@@ -76,8 +76,8 @@ const cardapioDodia = {
       qntdElement.textContent = "0";
 
       // Dispara evento AddToCart com dados dinâmicos do Cardápio do Dia
-      if (typeof cardapio !== "undefined" && typeof cardapio.trackPixelEvent === "function") {
-        cardapio.trackPixelEvent("AddToCart", {
+      if (typeof cardapio !== "undefined" && typeof cardapio.metodos.trackPixelEvent === "function") {
+        cardapio.metodos.trackPixelEvent("AddToCart", {
           content_name: itemBase.nome,
           content_ids: [id],
           content_type: "product",

@@ -162,7 +162,7 @@ cardapio.metodos = {
         }
 
         // Dispara evento AddToCart com dados dinâmicos
-        cardapio.trackPixelEvent("AddToCart", {
+        cardapio.metodos.trackPixelEvent("AddToCart", {
           content_name: item[0].name,
           content_ids: [item[0].id],
           content_type: "product",
@@ -488,7 +488,7 @@ cardapio.metodos = {
       item_price: e.price,
     }));
 
-    cardapio.trackPixelEvent("InitiateCheckout", {
+    cardapio.metodos.trackPixelEvent("InitiateCheckout", {
       content_type: "product",
       contents,
       value: valorCarrinho + valorEntrega,
@@ -837,7 +837,7 @@ cardapio.metodos = {
       item_price: e.price,
     }));
 
-    cardapio.trackPixelEvent("Purchase", {
+    cardapio.metodos.trackPixelEvent("Purchase", {
       content_type: "product",
       contents,
       value: total,
